@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB96C16626325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */; };
+		EB96C16826325B4000419A8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C16726325B4000419A8D /* ContentView.swift */; };
+		EB96C16A26325B4300419A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB96C16926325B4300419A8D /* Assets.xcassets */; };
+		EB96C16D26325B4300419A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB96C16C26325B4300419A8D /* Preview Assets.xcassets */; };
+		EB96C17826325B4300419A8D /* QuickCOVIDVaccineFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C17726325B4300419A8D /* QuickCOVIDVaccineFinderTests.swift */; };
+		EB96C18326325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C18226325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB96C17426325B4300419A8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB96C15A26325B4000419A8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB96C16126325B4000419A8D;
+			remoteInfo = QuickCOVIDVaccineFinder;
+		};
+		EB96C17F26325B4300419A8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB96C15A26325B4000419A8D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB96C16126325B4000419A8D;
+			remoteInfo = QuickCOVIDVaccineFinder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EB96C16226325B4000419A8D /* QuickCOVIDVaccineFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCOVIDVaccineFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCOVIDVaccineFinderApp.swift; sourceTree = "<group>"; };
+		EB96C16726325B4000419A8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB96C16926325B4300419A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB96C16C26325B4300419A8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EB96C16E26325B4300419A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB96C17326325B4300419A8D /* QuickCOVIDVaccineFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickCOVIDVaccineFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB96C17726325B4300419A8D /* QuickCOVIDVaccineFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCOVIDVaccineFinderTests.swift; sourceTree = "<group>"; };
+		EB96C17926325B4300419A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB96C17E26325B4300419A8D /* QuickCOVIDVaccineFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickCOVIDVaccineFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB96C18226325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCOVIDVaccineFinderUITests.swift; sourceTree = "<group>"; };
+		EB96C18426325B4300419A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB96C15F26325B4000419A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB96C17026325B4300419A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB96C17B26325B4300419A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB96C15926325B4000419A8D = {
+			isa = PBXGroup;
+			children = (
+				EB96C16426325B4000419A8D /* QuickCOVIDVaccineFinder */,
+				EB96C17626325B4300419A8D /* QuickCOVIDVaccineFinderTests */,
+				EB96C18126325B4300419A8D /* QuickCOVIDVaccineFinderUITests */,
+				EB96C16326325B4000419A8D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB96C16326325B4000419A8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB96C16226325B4000419A8D /* QuickCOVIDVaccineFinder.app */,
+				EB96C17326325B4300419A8D /* QuickCOVIDVaccineFinderTests.xctest */,
+				EB96C17E26325B4300419A8D /* QuickCOVIDVaccineFinderUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB96C16426325B4000419A8D /* QuickCOVIDVaccineFinder */ = {
+			isa = PBXGroup;
+			children = (
+				EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */,
+				EB96C16726325B4000419A8D /* ContentView.swift */,
+				EB96C16926325B4300419A8D /* Assets.xcassets */,
+				EB96C16E26325B4300419A8D /* Info.plist */,
+				EB96C16B26325B4300419A8D /* Preview Content */,
+			);
+			path = QuickCOVIDVaccineFinder;
+			sourceTree = "<group>";
+		};
+		EB96C16B26325B4300419A8D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EB96C16C26325B4300419A8D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB96C17626325B4300419A8D /* QuickCOVIDVaccineFinderTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB96C17726325B4300419A8D /* QuickCOVIDVaccineFinderTests.swift */,
+				EB96C17926325B4300419A8D /* Info.plist */,
+			);
+			path = QuickCOVIDVaccineFinderTests;
+			sourceTree = "<group>";
+		};
+		EB96C18126325B4300419A8D /* QuickCOVIDVaccineFinderUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EB96C18226325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift */,
+				EB96C18426325B4300419A8D /* Info.plist */,
+			);
+			path = QuickCOVIDVaccineFinderUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB96C16126325B4000419A8D /* QuickCOVIDVaccineFinder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB96C18726325B4300419A8D /* Build configuration list for PBXNativeTarget "QuickCOVIDVaccineFinder" */;
+			buildPhases = (
+				EB96C15E26325B4000419A8D /* Sources */,
+				EB96C15F26325B4000419A8D /* Frameworks */,
+				EB96C16026325B4000419A8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickCOVIDVaccineFinder;
+			productName = QuickCOVIDVaccineFinder;
+			productReference = EB96C16226325B4000419A8D /* QuickCOVIDVaccineFinder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EB96C17226325B4300419A8D /* QuickCOVIDVaccineFinderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB96C18A26325B4300419A8D /* Build configuration list for PBXNativeTarget "QuickCOVIDVaccineFinderTests" */;
+			buildPhases = (
+				EB96C16F26325B4300419A8D /* Sources */,
+				EB96C17026325B4300419A8D /* Frameworks */,
+				EB96C17126325B4300419A8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB96C17526325B4300419A8D /* PBXTargetDependency */,
+			);
+			name = QuickCOVIDVaccineFinderTests;
+			productName = QuickCOVIDVaccineFinderTests;
+			productReference = EB96C17326325B4300419A8D /* QuickCOVIDVaccineFinderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EB96C17D26325B4300419A8D /* QuickCOVIDVaccineFinderUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB96C18D26325B4300419A8D /* Build configuration list for PBXNativeTarget "QuickCOVIDVaccineFinderUITests" */;
+			buildPhases = (
+				EB96C17A26325B4300419A8D /* Sources */,
+				EB96C17B26325B4300419A8D /* Frameworks */,
+				EB96C17C26325B4300419A8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB96C18026325B4300419A8D /* PBXTargetDependency */,
+			);
+			name = QuickCOVIDVaccineFinderUITests;
+			productName = QuickCOVIDVaccineFinderUITests;
+			productReference = EB96C17E26325B4300419A8D /* QuickCOVIDVaccineFinderUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB96C15A26325B4000419A8D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					EB96C16126325B4000419A8D = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					EB96C17226325B4300419A8D = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = EB96C16126325B4000419A8D;
+					};
+					EB96C17D26325B4300419A8D = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = EB96C16126325B4000419A8D;
+					};
+				};
+			};
+			buildConfigurationList = EB96C15D26325B4000419A8D /* Build configuration list for PBXProject "QuickCOVIDVaccineFinder" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB96C15926325B4000419A8D;
+			productRefGroup = EB96C16326325B4000419A8D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB96C16126325B4000419A8D /* QuickCOVIDVaccineFinder */,
+				EB96C17226325B4300419A8D /* QuickCOVIDVaccineFinderTests */,
+				EB96C17D26325B4300419A8D /* QuickCOVIDVaccineFinderUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB96C16026325B4000419A8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB96C16D26325B4300419A8D /* Preview Assets.xcassets in Resources */,
+				EB96C16A26325B4300419A8D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB96C17126325B4300419A8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB96C17C26325B4300419A8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB96C15E26325B4000419A8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB96C16826325B4000419A8D /* ContentView.swift in Sources */,
+				EB96C16626325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB96C16F26325B4300419A8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB96C17826325B4300419A8D /* QuickCOVIDVaccineFinderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB96C17A26325B4300419A8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB96C18326325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB96C17526325B4300419A8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB96C16126325B4000419A8D /* QuickCOVIDVaccineFinder */;
+			targetProxy = EB96C17426325B4300419A8D /* PBXContainerItemProxy */;
+		};
+		EB96C18026325B4300419A8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB96C16126325B4000419A8D /* QuickCOVIDVaccineFinder */;
+			targetProxy = EB96C17F26325B4300419A8D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EB96C18526325B4300419A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EB96C18626325B4300419A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB96C18826325B4300419A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"QuickCOVIDVaccineFinder/Preview Content\"";
+				DEVELOPMENT_TEAM = 8977948DH7;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = QuickCOVIDVaccineFinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.QuickCOVIDVaccineFinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB96C18926325B4300419A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"QuickCOVIDVaccineFinder/Preview Content\"";
+				DEVELOPMENT_TEAM = 8977948DH7;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = QuickCOVIDVaccineFinder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.QuickCOVIDVaccineFinder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB96C18B26325B4300419A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8977948DH7;
+				INFOPLIST_FILE = QuickCOVIDVaccineFinderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.QuickCOVIDVaccineFinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickCOVIDVaccineFinder.app/QuickCOVIDVaccineFinder";
+			};
+			name = Debug;
+		};
+		EB96C18C26325B4300419A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8977948DH7;
+				INFOPLIST_FILE = QuickCOVIDVaccineFinderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.QuickCOVIDVaccineFinderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickCOVIDVaccineFinder.app/QuickCOVIDVaccineFinder";
+			};
+			name = Release;
+		};
+		EB96C18E26325B4300419A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8977948DH7;
+				INFOPLIST_FILE = QuickCOVIDVaccineFinderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.QuickCOVIDVaccineFinderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QuickCOVIDVaccineFinder;
+			};
+			name = Debug;
+		};
+		EB96C18F26325B4300419A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8977948DH7;
+				INFOPLIST_FILE = QuickCOVIDVaccineFinderUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.QuickCOVIDVaccineFinderUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = QuickCOVIDVaccineFinder;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB96C15D26325B4000419A8D /* Build configuration list for PBXProject "QuickCOVIDVaccineFinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB96C18526325B4300419A8D /* Debug */,
+				EB96C18626325B4300419A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB96C18726325B4300419A8D /* Build configuration list for PBXNativeTarget "QuickCOVIDVaccineFinder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB96C18826325B4300419A8D /* Debug */,
+				EB96C18926325B4300419A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB96C18A26325B4300419A8D /* Build configuration list for PBXNativeTarget "QuickCOVIDVaccineFinderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB96C18B26325B4300419A8D /* Debug */,
+				EB96C18C26325B4300419A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB96C18D26325B4300419A8D /* Build configuration list for PBXNativeTarget "QuickCOVIDVaccineFinderUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB96C18E26325B4300419A8D /* Debug */,
+				EB96C18F26325B4300419A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB96C15A26325B4000419A8D /* Project object */;
+}
