@@ -21,6 +21,7 @@ struct VaccineEntry : Decodable, Hashable  {
     var location_type          :   String
     var lattitude              :   Float = 0.0
     var longitude              :   Float = 0.0
+    var counter                :   Int = 0
     
     init() {
         self.id = 0

@@ -13,13 +13,21 @@ struct ContentView: View {
     
     @State var allVaccineSites : [VaccineEntry] = []
     @State var numAvailable : Int = 0
+    @State var cnt : Int = 0
+    @State var loading : Bool = false
+    @State private var isLoading = false
     
     func incrementNumAvailable() {
         self.numAvailable = self.numAvailable + 1
     }
     
+   
     func load() {
         
+            self.allVaccineSites = []
+            self.numAvailable = 0
+            self.cnt = 0
+            self.loading = true
             print("Starting load...")
             guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/VA.json") else {
                 print("Invalid URL")
@@ -79,7 +87,9 @@ struct ContentView: View {
                         if (properties.0 == "appointments_available") {
                             vaccine.appointments_available = properties.1.boolValue
                             if (vaccine.appointments_available) {
+                                self.cnt = self.cnt + 1
                                 self.numAvailable = self.numAvailable + 1
+                                vaccine.counter = self.cnt 
                             }
                         }
                         
@@ -93,6 +103,7 @@ struct ContentView: View {
                     }
                     
                 }
+                self.loading = false
             }.resume()
             
         }
@@ -113,7 +124,7 @@ struct ContentView: View {
                                 //.font(.headline)
                             Text("Total Locations: \(self.allVaccineSites.count)")
                             Text("Number Available with Vaccine: \(self.numAvailable)")
-                            Text("Click name for more information")
+                            Text("Click location name for more information")
                             Link("Thanks to Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
                             Text(" ")
                         }
@@ -121,10 +132,11 @@ struct ContentView: View {
 
                         Spacer()
                         
-                    }.background(Color.yellow)
+                    }.background(Colors.SpecialBlue)
                         .edgesIgnoringSafeArea(.all)
+                    .frame( height: 100)
                     Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
-                        .offset(x: 0, y: -60.0/*@END_MENU_TOKEN@*/)
+                        .offset(x: 0, y: 8.0/*@END_MENU_TOKEN@*/)
                    
                     ScrollView {
                         
@@ -142,12 +154,88 @@ struct ContentView: View {
                 }
             }.onAppear() {
                 load()
-            }
+            }.toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    ZStack {
+                        
+                        HStack {
+                            Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
+                                .offset(x: -90, y: 10)
+                            Text ("2021 Grossman Labs")
+                                .offset(x: -90, y: 10)
+                        }
+//                    Text ("Grossman Labs 2021 ").frame(alignment: .leading)
+//                        .offset(x: -200, y: 0)
+                    
+                        if (!self.loading) {
+                            Button(action: {
+                                self.load()
+                                print("Edit tapped!")
+                        }) {
+                            HStack {
+                                
+                                Image(systemName: "arrow.clockwise")
+                                    //.font(.title)
+                                    //.mask(Circle())
+                                Text("Refresh")
+                                    .fontWeight(.semibold)
+                                    //.font(.title)
+                                    .clipShape(Rectangle())
+                                    .mask(Rectangle())
+                                    .frame(alignment: .trailing)
+                                    
+                                    
+                            }
+                            .frame(minWidth: 0, maxWidth: .infinity,alignment: .trailing)
+                            .padding()
+                            .foregroundColor(.black)
+                            //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
+                            .background(Colors.SpecialNyanza)
+                            .cornerRadius(40)
+                            .padding(.horizontal, 40)
+                            .zIndex(1)
+                            .clipShape(Rectangle())
+                            .offset(x: 110, y: 10)
+                            }
+                        } else {
+                            HStack{
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                                    .scaleEffect(1.5)
+                            }.offset(x: 110, y: 10)
+                            
+                          //  ZStack {
+//
+//                                        Circle()
+//                                            .stroke(Color(.systemGray5), lineWidth: 7)
+//                                            .frame(width: 25, height: 25)
+//
+//                                        Circle()
+//                                            .trim(from: 0, to: 0.2)
+//                                            .stroke(Colors.SpecialNyanza, lineWidth: 5)
+//                                            .frame(width: 20, height: 20)
+//                                            .rotationEffect(Angle(degrees: self.isLoading ? 360 : 0))
+//                                            .animation(Animation.basic(duration: 10,curve: .linear).repeatForever(autoreverses: false))
+//                                            .onAppear() {
+//                                                self.isLoading = true
+                                     //   }.offset(x: 110, y: 10)
+                            }
+//                            Text("Loading...")
+//                                .offset(x: 110, y: 10)
+                        }
+//                    Button("Refresh") { //Add Refresh Logic here
+//                        print("Pressed")
+//                    }
+//                    //.buttonStyle(CircleButtonStyle(bgColor: Color.blue))
+
+
         }
     }
         
-
+            }
 }
+
+    }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
