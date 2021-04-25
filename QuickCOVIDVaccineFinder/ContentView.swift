@@ -11,12 +11,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var availableVaccines : [VaccineEntry] = []
+    @State var allVaccineSites : [VaccineEntry] = []
+    @State var numAvailable : Int = 0
     
+    func incrementNumAvailable() {
+        self.numAvailable = self.numAvailable + 1
+    }
     
     func load() {
         
-            var location : JSON
             print("Starting load...")
             guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/VA.json") else {
                 print("Invalid URL")
@@ -75,6 +78,9 @@ struct ContentView: View {
                         
                         if (properties.0 == "appointments_available") {
                             vaccine.appointments_available = properties.1.boolValue
+                            if (vaccine.appointments_available) {
+                                self.numAvailable = self.numAvailable + 1
+                            }
                         }
                         
                         if (properties.0 == "provider_brand_name") {
@@ -83,7 +89,7 @@ struct ContentView: View {
                     }
                     
                     DispatchQueue.main.async {
-                        self.availableVaccines.append(vaccine)
+                        self.allVaccineSites.append(vaccine)
                     }
                     
                 }
@@ -94,16 +100,40 @@ struct ContentView: View {
     
     
     var body: some View {
-        
-        ScrollView {
-            VStack {
-                ForEach(self.availableVaccines, id: \.self) { vaccine in
-                    OneVaccineView(vaccine : vaccine)
+        GeometryReader { geometry in
+            ScrollView  {
+           
+                VStack {
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
+                                //.font(.headline)
+                            Text("Total Locations: \(self.allVaccineSites.count)")
+                            Text("Number Available with Vaccine: \(self.numAvailable)")
+                            Text("Click name for more information")
+                            Link("Thanks to Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
+                        }.edgesIgnoringSafeArea(.all)
+
+                        Spacer()
+                        
+                    }.background(Color.yellow).edgesIgnoringSafeArea(.all)
+                    Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
+                    ForEach(self.allVaccineSites, id: \.self) { vaccine in
+                        if (vaccine.appointments_available) {
+                            ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
+                                //.frame(width: 100)
+//                            ListView(vaccine : vaccine).frame(width: geometry.size.width)
+//                                .frame(width: geometry.size.width)
+                            
+                        }
+                    }
+//                    Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black)
                 }
-                Divider().background(Color.black)
+                
+            }.onAppear() {
+                load()
             }
-        }.onAppear() {
-            load()
         }
     }
         

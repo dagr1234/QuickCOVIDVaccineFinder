@@ -13,22 +13,27 @@ struct OneVaccineView: View {
     
     var body: some View {
             
-        VStack(alignment: .leading) {
-            Text(vaccine.provider_brand_name).font(.subheadline).foregroundColor(.black)
-            Text(vaccine.address).font(.subheadline).foregroundColor(.black)
-            HStack(alignment: .top) {
-                Text(vaccine.city + ",").font(.subheadline).foregroundColor(.blue)
-                Text(vaccine.state).font(.subheadline).foregroundColor(.blue)
-                Text(vaccine.zip_code).font(.subheadline).foregroundColor(.blue)
-//                Text(String(vaccine.lattitude)).font(.subheadline).foregroundColor(.black)
-//                Text(String(vaccine.longitude)).font(.subheadline).foregroundColor(.black)
+        HStack() {
+            Spacer()
+            VStack() {
+                Link(vaccine.provider_brand_name, destination: URL(string: vaccine.url)!)
+                Text(vaccine.address).font(.subheadline).foregroundColor(.black)
+                
+                
+                HStack() {
+                    Text(vaccine.city + ",").font(.subheadline).foregroundColor(.blue)
+                    Text(vaccine.state).font(.subheadline).foregroundColor(.blue)
+                    Text(vaccine.zip_code).font(.subheadline).foregroundColor(.blue)
+                }
             }
-
+Spacer()
         }
-        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        .frame( height: 85, alignment: .leading)
+        //.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+        .background(Color.blue
+                        .saturation(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                        .cornerRadius(/*@START_MENU_TOKEN@*/11.0/*@END_MENU_TOKEN@*/))
                 
-                
-                //Spacer()
 //                Text(String(format: "%.1f miles", trail.distance))
     }
 }
