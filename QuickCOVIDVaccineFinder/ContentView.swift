@@ -101,24 +101,33 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView  {
-           
+//            ScrollView  {
+                ZStack {
                 VStack {
                     HStack {
                         Spacer()
                         VStack {
+                            Text(" ")
+                            Text(" ")
                             Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
                                 //.font(.headline)
                             Text("Total Locations: \(self.allVaccineSites.count)")
                             Text("Number Available with Vaccine: \(self.numAvailable)")
                             Text("Click name for more information")
                             Link("Thanks to Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
-                        }.edgesIgnoringSafeArea(.all)
+                            Text(" ")
+                        }
+                        //.edgesIgnoringSafeArea(.all)
 
                         Spacer()
                         
-                    }.background(Color.yellow).edgesIgnoringSafeArea(.all)
+                    }.background(Color.yellow)
+                        .edgesIgnoringSafeArea(.all)
                     Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
+                        .offset(x: 0, y: -60.0/*@END_MENU_TOKEN@*/)
+                   
+                    ScrollView {
+                        
                     ForEach(self.allVaccineSites, id: \.self) { vaccine in
                         if (vaccine.appointments_available) {
                             ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
@@ -130,7 +139,7 @@ struct ContentView: View {
                     }
 //                    Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black)
                 }
-                
+                }
             }.onAppear() {
                 load()
             }
