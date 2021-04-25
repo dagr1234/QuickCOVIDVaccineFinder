@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VaccineEntry : Decodable  {
+struct VaccineEntry : Decodable, Hashable  {
     var id:                   Int // Vaccine Spotter's own unique ID for this location.
     var url      :            String
     var provider :            String // A unique key representing the pharmacy or provider this location belongs to.
@@ -29,10 +29,6 @@ struct VaccineEntry : Decodable  {
         self.name = ""
         self.state = ""
     }
-}
-
-struct VaccineEntries: Decodable {
-  var results: [VaccineEntry]
 }
 
 
