@@ -117,7 +117,7 @@ struct ContentView: View {
                             Link("Thanks to Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
                             Text(" ")
                         }
-                        //.edgesIgnoringSafeArea(.all)
+                        //.edgesIgnoringSafeArea(.all)  d
 
                         Spacer()
                         
