@@ -15,6 +15,7 @@
 		EB96C18326325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C18226325B4300419A8D /* QuickCOVIDVaccineFinderUITests.swift */; };
 		EB96C19426325BE100419A8D /* VaccineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C19326325BE100419A8D /* VaccineEntry.swift */; };
 		EB96C1992634D5A100419A8D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1982634D5A100419A8D /* SwiftyJSON.swift */; };
+		EB96C19E2635991D00419A8D /* OneVaccineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C19D2635991D00419A8D /* OneVaccineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		EB96C18426325B4300419A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB96C19326325BE100419A8D /* VaccineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineEntry.swift; sourceTree = "<group>"; };
 		EB96C1982634D5A100419A8D /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		EB96C19D2635991D00419A8D /* OneVaccineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneVaccineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */,
 				EB96C16726325B4000419A8D /* ContentView.swift */,
+				EB96C19D2635991D00419A8D /* OneVaccineView.swift */,
 				EB96C1982634D5A100419A8D /* SwiftyJSON.swift */,
 				EB96C19326325BE100419A8D /* VaccineEntry.swift */,
 				EB96C16926325B4300419A8D /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 			files = (
 				EB96C19426325BE100419A8D /* VaccineEntry.swift in Sources */,
 				EB96C16826325B4000419A8D /* ContentView.swift in Sources */,
+				EB96C19E2635991D00419A8D /* OneVaccineView.swift in Sources */,
 				EB96C16626325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift in Sources */,
 				EB96C1992634D5A100419A8D /* SwiftyJSON.swift in Sources */,
 			);
