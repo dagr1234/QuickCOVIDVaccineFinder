@@ -7,6 +7,8 @@
 // queries vaccinespootter.org --- built by a truly helpful person and displays result on iOS Device
 
 import SwiftUI
+import CoreLocation
+
 
 
 struct ContentView: View {
@@ -16,18 +18,25 @@ struct ContentView: View {
     @State var cnt : Int = 0
     @State var loading : Bool = false
     @State private var isLoading = false
+   
     
     func incrementNumAvailable() {
         self.numAvailable = self.numAvailable + 1
     }
     
-   
     func load() {
         
             self.allVaccineSites = []
             self.numAvailable = 0
             self.cnt = 0
             self.loading = true
+        
+            print("Current Lat.Long")
+        
+        
+        
+
+        
             print("Starting load...")
             guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/VA.json") else {
                 print("Invalid URL")
@@ -109,8 +118,11 @@ struct ContentView: View {
         }
     
     
+    @ObservedObject var locationViewModel = LocationViewModel()
     
     var body: some View {
+        
+        
         GeometryReader { geometry in
 //            ScrollView  {
                 ZStack {
@@ -120,12 +132,14 @@ struct ContentView: View {
                         VStack {
                             Text(" ")
                             Text(" ")
+                            Text("Latitude: \(locationViewModel.userLatitude)")
+                                    Text("Longitude: \(locationViewModel.userLongitude)")
                             Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
                                 //.font(.headline)
                             Text("Total Locations: \(self.allVaccineSites.count)")
                             Text("Number Available with Vaccine: \(self.numAvailable)")
                             Text("Click location name for more information")
-                            Link("Thanks to Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
+                            Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
                             Text(" ")
                         }
                         //.edgesIgnoringSafeArea(.all)  d

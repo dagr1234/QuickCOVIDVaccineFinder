@@ -19,6 +19,7 @@
 		EB96C1A62635F37800419A8D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1A52635F37800419A8D /* ListView.swift */; };
 		EB96C1AB263619C100419A8D /* CircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1AA263619BE00419A8D /* CircleButtonStyle.swift */; };
 		EB96C1B02636274B00419A8D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1AF2636274A00419A8D /* Utility.swift */; };
+		EB96C1B82636463F00419A8D /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1B72636463E00419A8D /* LocationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		EB96C1A52635F37800419A8D /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		EB96C1AA263619BE00419A8D /* CircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonStyle.swift; sourceTree = "<group>"; };
 		EB96C1AF2636274A00419A8D /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		EB96C1B72636463E00419A8D /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			children = (
 				EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */,
 				EB96C16726325B4000419A8D /* ContentView.swift */,
+				EB96C1B72636463E00419A8D /* LocationViewModel.swift */,
 				EB96C1AA263619BE00419A8D /* CircleButtonStyle.swift */,
 				EB96C1A52635F37800419A8D /* ListView.swift */,
 				EB96C19D2635991D00419A8D /* OneVaccineView.swift */,
@@ -285,6 +288,7 @@
 				EB96C19E2635991D00419A8D /* OneVaccineView.swift in Sources */,
 				EB96C16626325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift in Sources */,
 				EB96C1992634D5A100419A8D /* SwiftyJSON.swift in Sources */,
+				EB96C1B82636463F00419A8D /* LocationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
