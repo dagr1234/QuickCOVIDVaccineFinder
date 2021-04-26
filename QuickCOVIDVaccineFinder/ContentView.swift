@@ -5,7 +5,7 @@
 //  Created by David Grossman on 4/22/21.
 //
 // queries vaccinespootter.org --- built by a truly helpful person and displays result on iOS Device
-
+//
 import SwiftUI
 import CoreLocation
 
