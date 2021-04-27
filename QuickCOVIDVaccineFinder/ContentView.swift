@@ -57,8 +57,8 @@ struct ContentView: View {
                         }
                         
                         if (properties.0 == "coordinates") {
-                            vaccine.lattitude = properties.1.arrayValue[0].floatValue
-                            vaccine.longitude = properties.1.arrayValue[1].floatValue
+                            vaccine.longitude = properties.1.arrayValue[0].floatValue
+                            vaccine.lattitude = properties.1.arrayValue[1].floatValue
                         }
                     }
             
@@ -132,8 +132,8 @@ struct ContentView: View {
                         VStack {
                             Text(" ")
                             Text(" ")
-                            Text("Latitude: \(locationViewModel.userLatitude)")
-                                    Text("Longitude: \(locationViewModel.userLongitude)")
+//                            Text("Latitude: \(locationViewModel.userLatitude)")
+//                                    Text("Longitude: \(locationViewModel.userLongitude)")
                             Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
                                 //.font(.headline)
                             Text("Total Locations: \(self.allVaccineSites.count)")
@@ -152,19 +152,15 @@ struct ContentView: View {
                     Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
                         .offset(x: 0, y: 8.0/*@END_MENU_TOKEN@*/)
                    
+                    // outputt the list
                     ScrollView {
                         
-                    ForEach(self.allVaccineSites, id: \.self) { vaccine in
-                        if (vaccine.appointments_available) {
-                            ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
-                                //.frame(width: 100)
-//                            ListView(vaccine : vaccine).frame(width: geometry.size.width)
-//                                .frame(width: geometry.size.width)
-                            
+                        ForEach(self.allVaccineSites, id: \.self) { vaccine in
+                            if (vaccine.appointments_available) {
+                                ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
+                            }
                         }
                     }
-//                    Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black)
-                }
                 }
             }.onAppear() {
                 load()

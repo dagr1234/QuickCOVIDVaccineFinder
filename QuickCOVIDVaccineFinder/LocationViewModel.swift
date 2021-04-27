@@ -6,7 +6,7 @@ import CoreLocation
 
 class LocationViewModel: NSObject, ObservableObject{
   
-  @Published var userLatitude: Double  = 0
+  @Published var userLatitude:  Double = 0
   @Published var userLongitude: Double = 0
   
   private let locationManager = CLLocationManager()
@@ -26,7 +26,5 @@ extension LocationViewModel: CLLocationManagerDelegate {
     guard let location = locations.last else { return }
     userLatitude = location.coordinate.latitude
     userLongitude = location.coordinate.longitude
-    print("Now getting location")
-    print(location)
   }
 }

@@ -59,6 +59,8 @@
 		EB96C1AA263619BE00419A8D /* CircleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonStyle.swift; sourceTree = "<group>"; };
 		EB96C1AF2636274A00419A8D /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		EB96C1B72636463E00419A8D /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		EBA8D5CF2637935D00ED0644 /* reston.gpx */ = {isa = PBXFileReference; lastKnownFileType = text; path = reston.gpx; sourceTree = "<group>"; };
+		EBA8D5D0263793F200ED0644 /* reston.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = reston.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,8 @@
 		EB96C15926325B4000419A8D = {
 			isa = PBXGroup;
 			children = (
+				EBA8D5CF2637935D00ED0644 /* reston.gpx */,
+				EBA8D5D0263793F200ED0644 /* reston.gpx */,
 				EB96C16426325B4000419A8D /* QuickCOVIDVaccineFinder */,
 				EB96C17626325B4300419A8D /* QuickCOVIDVaccineFinderTests */,
 				EB96C18126325B4300419A8D /* QuickCOVIDVaccineFinderUITests */,
