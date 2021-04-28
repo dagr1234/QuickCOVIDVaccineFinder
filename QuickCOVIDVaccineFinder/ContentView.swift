@@ -13,6 +13,7 @@ import CoreLocation
 
 struct ContentView: View {
     
+    @ObservedObject var locationManager = LocationManager()
     @State var allVaccineSites : [VaccineEntry] = []
     @State var numAvailable : Int = 0
     @State var cnt : Int = 0
@@ -24,22 +25,22 @@ struct ContentView: View {
         self.numAvailable = self.numAvailable + 1
     }
     
-    func load() {
+    func load(state : String) {
         
             self.allVaccineSites = []
             self.numAvailable = 0
             self.cnt = 0
             self.loading = true
         
-            print("Current Lat.Long")
         
+            let userLocation = locationManager.location
+            print("State \(state)")
+            
         
-        
-
-        
-            print("Starting load...")
-            guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/VA.json") else {
-                print("Invalid URL")
+//            guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/VA.json") else {
+            guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/"+state+".json") else {
+              
+            print("Invalid URL")
                 return
             }
             let request = URLRequest(url: url)
@@ -50,7 +51,7 @@ struct ContentView: View {
                 }
                 for features in json["features"].arrayValue {
                     var vaccine : VaccineEntry = VaccineEntry()
-                    print(features)
+//                    print(features)
                     for properties in features["geometry"] {
                         if (properties.0 == "type") {
                             vaccine.location_type = properties.1.stringValue
@@ -59,6 +60,15 @@ struct ContentView: View {
                         if (properties.0 == "coordinates") {
                             vaccine.longitude = properties.1.arrayValue[0].floatValue
                             vaccine.lattitude = properties.1.arrayValue[1].floatValue
+                           
+                            
+                            let vaccineLocation =  CLLocation(latitude  : Double(vaccine.lattitude),
+                                                              longitude : Double(vaccine.longitude))
+                            
+                            
+                            let distanceInMeters = userLocation?.distance(from: vaccineLocation )
+                            
+                            vaccine.distanceFromUser = Double(0.000621371) * (distanceInMeters ?? 0.0)
                         }
                     }
             
@@ -98,7 +108,6 @@ struct ContentView: View {
                             if (vaccine.appointments_available) {
                                 self.cnt = self.cnt + 1
                                 self.numAvailable = self.numAvailable + 1
-                                vaccine.counter = self.cnt 
                             }
                         }
                         
@@ -117,8 +126,14 @@ struct ContentView: View {
             
         }
     
+    // sort vaccine sites by distance from user
+    func getVaccineSitesSortedByDistance() -> [VaccineEntry] {
+        
+        return allVaccineSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+        
+    }
     
-    @ObservedObject var locationViewModel = LocationViewModel()
+   
     
     var body: some View {
         
@@ -153,17 +168,23 @@ struct ContentView: View {
                         .offset(x: 0, y: 8.0/*@END_MENU_TOKEN@*/)
                    
                     // outputt the list
-                    ScrollView {
-                        
-                        ForEach(self.allVaccineSites, id: \.self) { vaccine in
-                            if (vaccine.appointments_available) {
-                                ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
+                    if (!self.loading) {
+                        ScrollView {
+                            
+                            ForEach(self.getVaccineSitesSortedByDistance(), id: \.self) { vaccine in
+                                if (vaccine.appointments_available) {
+                                    ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
+                                }
                             }
                         }
                     }
                 }
             }.onAppear() {
-                load()
+                
+                let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                print("State ===> \(userState)")
+                load(state : userState)
+                
             }.toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     ZStack {
@@ -179,8 +200,8 @@ struct ContentView: View {
                     
                         if (!self.loading) {
                             Button(action: {
-                                self.load()
-                                print("Edit tapped!")
+                                let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                self.load(state : userState)
                         }) {
                             HStack {
                                 
@@ -213,39 +234,14 @@ struct ContentView: View {
                                     .progressViewStyle(CircularProgressViewStyle(tint: .black))
                                     .scaleEffect(1.5)
                             }.offset(x: 110, y: 10)
-                            
-                          //  ZStack {
-//
-//                                        Circle()
-//                                            .stroke(Color(.systemGray5), lineWidth: 7)
-//                                            .frame(width: 25, height: 25)
-//
-//                                        Circle()
-//                                            .trim(from: 0, to: 0.2)
-//                                            .stroke(Colors.SpecialNyanza, lineWidth: 5)
-//                                            .frame(width: 20, height: 20)
-//                                            .rotationEffect(Angle(degrees: self.isLoading ? 360 : 0))
-//                                            .animation(Animation.basic(duration: 10,curve: .linear).repeatForever(autoreverses: false))
-//                                            .onAppear() {
-//                                                self.isLoading = true
-                                     //   }.offset(x: 110, y: 10)
-                            }
-//                            Text("Loading...")
-//                                .offset(x: 110, y: 10)
+
                         }
-//                    Button("Refresh") { //Add Refresh Logic here
-//                        print("Pressed")
-//                    }
-//                    //.buttonStyle(CircleButtonStyle(bgColor: Color.blue))
-
-
-        }
+                    } // zStack
+                } // Toolbar Item
+            } // Toolbar
+        } // Geometry Reader
     }
-        
-            }
 }
-
-    }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

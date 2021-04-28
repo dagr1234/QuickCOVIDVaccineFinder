@@ -21,7 +21,7 @@ struct VaccineEntry : Decodable, Hashable  {
     var location_type          :   String
     var lattitude              :   Float = 0.0
     var longitude              :   Float = 0.0
-    var counter                :   Int = 0
+    var distanceFromUser       :   Double = 0.0
     
     init() {
         self.id = 0
@@ -37,6 +37,7 @@ struct VaccineEntry : Decodable, Hashable  {
         self.location_type = ""
         self.lattitude = 0.0
         self.longitude = 0.0
+        self.distanceFromUser = 0.0
     }
     
     init (id : Int, url : String, provider : String, city : String, state : String, zipCode : String, address : String, name : String,
@@ -52,6 +53,7 @@ struct VaccineEntry : Decodable, Hashable  {
         self.state = state
         self.provider_brand_name = "CVS"
         self.location_type = "Point"
+        self.distanceFromUser = 0.0 
     }
 }
 
