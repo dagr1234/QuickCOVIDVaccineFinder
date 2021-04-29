@@ -19,6 +19,7 @@ struct ContentView: View {
     @State var cnt : Int = 0
     @State var loading : Bool = false
     @State private var isLoading = false
+    @State var showSplash : Bool = true
    
     
     func incrementNumAvailable() {
@@ -36,8 +37,7 @@ struct ContentView: View {
             let userLocation = locationManager.location
             print("State \(state)")
             
-        
-//            guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/VA.json") else {
+ 
             guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/"+state+".json") else {
               
             print("Invalid URL")
@@ -137,6 +137,18 @@ struct ContentView: View {
     
     var body: some View {
         
+        
+        ZStack {
+            if (self.showSplash) {
+                SplashView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                self.showSplash = false
+                        
+                            
+                        }
+                    }
+            } else {
         
         GeometryReader { geometry in
 //            ScrollView  {
@@ -240,7 +252,9 @@ struct ContentView: View {
                 } // Toolbar Item
             } // Toolbar
         } // Geometry Reader
+      }
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {

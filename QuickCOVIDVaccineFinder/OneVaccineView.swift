@@ -29,9 +29,9 @@ struct OneVaccineView: View {
                     }
                         
                     HStack() {
-                        Text(vaccine.city.capitalized + ",").font(.subheadline).foregroundColor(.blue)
-                        Text(vaccine.state).font(.subheadline).foregroundColor(.blue)
-                        Text(vaccine.zip_code).font(.subheadline).foregroundColor(.blue)
+                        Text(vaccine.city.capitalized + ",").font(.subheadline).foregroundColor(.black)
+                        Text(vaccine.state).font(.subheadline).foregroundColor(.black)
+                        Text(vaccine.zip_code).font(.subheadline).foregroundColor(.black)
                     }
                     Text(String(format: "%.1f miles", vaccine.distanceFromUser))
             }

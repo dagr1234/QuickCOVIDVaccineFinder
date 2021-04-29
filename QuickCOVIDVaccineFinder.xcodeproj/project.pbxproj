@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EB96C16626325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */; };
 		EB96C16826325B4000419A8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C16726325B4000419A8D /* ContentView.swift */; };
 		EB96C16A26325B4300419A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB96C16926325B4300419A8D /* Assets.xcassets */; };
 		EB96C16D26325B4300419A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB96C16C26325B4300419A8D /* Preview Assets.xcassets */; };
@@ -20,6 +19,8 @@
 		EB96C1AB263619C100419A8D /* CircleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1AA263619BE00419A8D /* CircleButtonStyle.swift */; };
 		EB96C1B02636274B00419A8D /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1AF2636274A00419A8D /* Utility.swift */; };
 		EB96C1B82636463F00419A8D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C1B72636463E00419A8D /* LocationManager.swift */; };
+		EBA8D5DB263A502A00ED0644 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8D5DA263A502A00ED0644 /* SplashView.swift */; };
+		EBA8D5E3263A51BA00ED0644 /* QuickCOVIDVaccineFinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA8D5E2263A51BA00ED0644 /* QuickCOVIDVaccineFinderApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		EB96C16226325B4000419A8D /* QuickCOVIDVaccineFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCOVIDVaccineFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCOVIDVaccineFinderApp.swift; sourceTree = "<group>"; };
 		EB96C16726325B4000419A8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EB96C16926325B4300419A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB96C16C26325B4300419A8D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -61,6 +61,8 @@
 		EB96C1B72636463E00419A8D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		EBA8D5CF2637935D00ED0644 /* reston.gpx */ = {isa = PBXFileReference; lastKnownFileType = text; path = reston.gpx; sourceTree = "<group>"; };
 		EBA8D5D0263793F200ED0644 /* reston.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = reston.gpx; sourceTree = "<group>"; };
+		EBA8D5DA263A502A00ED0644 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		EBA8D5E2263A51BA00ED0644 /* QuickCOVIDVaccineFinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickCOVIDVaccineFinderApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +115,9 @@
 		EB96C16426325B4000419A8D /* QuickCOVIDVaccineFinder */ = {
 			isa = PBXGroup;
 			children = (
-				EB96C16526325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift */,
 				EB96C16726325B4000419A8D /* ContentView.swift */,
+				EBA8D5E2263A51BA00ED0644 /* QuickCOVIDVaccineFinderApp.swift */,
+				EBA8D5DA263A502A00ED0644 /* SplashView.swift */,
 				EB96C1B72636463E00419A8D /* LocationManager.swift */,
 				EB96C1AA263619BE00419A8D /* CircleButtonStyle.swift */,
 				EB96C1A52635F37800419A8D /* ListView.swift */,
@@ -286,11 +289,12 @@
 			files = (
 				EB96C19426325BE100419A8D /* VaccineEntry.swift in Sources */,
 				EB96C16826325B4000419A8D /* ContentView.swift in Sources */,
+				EBA8D5E3263A51BA00ED0644 /* QuickCOVIDVaccineFinderApp.swift in Sources */,
 				EB96C1AB263619C100419A8D /* CircleButtonStyle.swift in Sources */,
 				EB96C1A62635F37800419A8D /* ListView.swift in Sources */,
 				EB96C1B02636274B00419A8D /* Utility.swift in Sources */,
 				EB96C19E2635991D00419A8D /* OneVaccineView.swift in Sources */,
-				EB96C16626325B4000419A8D /* QuickCOVIDVaccineFinderApp.swift in Sources */,
+				EBA8D5DB263A502A00ED0644 /* SplashView.swift in Sources */,
 				EB96C1992634D5A100419A8D /* SwiftyJSON.swift in Sources */,
 				EB96C1B82636463F00419A8D /* LocationManager.swift in Sources */,
 			);
