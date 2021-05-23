@@ -66,21 +66,21 @@ struct SplashView: View {
                     
 //                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: 1.0)))
             }
-            HStack {
-                Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
-                    .offset(x: -90, y: 10)
-                Text ("2021 Grossman Labs")
-                    .offset(x: -90, y: 10)
-            }
+//            HStack {
+//                Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
+//                    .offset(x: -90, y: 10)
+//                Text ("2021 Grossman Labs")
+//                    .offset(x: -90, y: 10)
+//            }
 
              Spacer()
-            HStack {
-                Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
-                    .offset(x: -90, y: 10)
-                Text ("2021 Grossman Labs")
-                    .offset(x: -90, y: 10)
-            }
-            Text ("2021 Grossman Labs")
+//            HStack {
+//                Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
+//                    .offset(x: -90, y: 10)
+//                Text ("2021 Grossman Labs")
+//                    .offset(x: -90, y: 10)
+//            }
+//            Text ("2021 Grossman Labs")
             Spacer()
            }
            .edgesIgnoringSafeArea(.all)

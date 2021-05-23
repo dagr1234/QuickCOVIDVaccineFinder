@@ -180,8 +180,99 @@ struct ContentView: View {
                             Text("Number Available with Vaccine: \(self.numAvailable)")
                             Text("Click location name for more information")
                             Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
+                        //    Text(" ")
+                            Button(action: {
+                                let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                self.load(state : userState)
+                                }) {
+                                HStack {
+                                
+                          //      Image(systemName: "arrow.clockwise")
+                                    //.font(.title)
+                                    //.mask(Circle())
+                                Text("Moderna")
+                                    .fontWeight(.semibold)
+                                    //.font(.title)
+                                    .clipShape(Rectangle())
+                                    .mask(Rectangle())
+                                   // .frame(alignment: .trailing)
+                                    
+                                    
+                            }
+                            .frame(minWidth: 0, maxWidth: 200,alignment: .center)
+                            .padding()
+                            .foregroundColor(.black)
+                            //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
+                            .background(Colors.SpecialNyanza)
+                            .cornerRadius(40)
+                       //     .padding(.horizontal, 40)
+                            .zIndex(1)
+                            .clipShape(Rectangle())
+                       //     .offset(x: 110, y: 10)
+                                Button(action: {
+                                    let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                    self.load(state : userState)
+                                    }) {
+                                HStack {
+                                
+                          //      Image(systemName: "arrow.clockwise")
+                                    //.font(.title)
+                                    //.mask(Circle())
+                                Text("Pfizer")
+                                    .fontWeight(.semibold)
+                                    //.font(.title)
+                                    .clipShape(Rectangle())
+                                    .mask(Rectangle())
+                                //    .frame(alignment: .trailing)
+                                    
+                                    
+                            }
+                            .frame(minWidth: 0, maxWidth: 200,alignment: .center)
+                            .padding()
+                            .foregroundColor(.black)
+                            //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
+                            .background(Colors.SpecialNyanza)
+                            .cornerRadius(40)
+                       //     .padding(.horizontal, 40)
+                            .zIndex(1)
+                            .clipShape(Rectangle())
+                       //     .offset(x: 110, y: 10)
+                                }
+                                    Button(action: {
+                                        let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                        self.load(state : userState)
+                                        }) {
+                                    HStack {
+                                    
+                              //      Image(systemName: "arrow.clockwise")
+                                        //.font(.title)
+                                        //.mask(Circle())
+                                    Text("J&J")
+                                        .fontWeight(.semibold)
+                                        //.font(.title)
+                                        .clipShape(Rectangle())
+                                        .mask(Rectangle())
+                                        //    .frame(alignment: .trailing)
+                                        
+                                        
+                                }
+                                .frame(minWidth: 0, maxWidth: 120,alignment: .center)
+                                .padding()
+                                .foregroundColor(.black)
+                                //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
+                                .background(Colors.SpecialNyanza)
+                                .cornerRadius(40)
+                           //     .padding(.horizontal, 40)
+                                .zIndex(1)
+                                .clipShape(Rectangle())
+                           //     .offset(x: 110, y: 10)
+                                    }
+                                }
                             Text(" ")
-                        }
+//                            HStack {
+//
+//                            }
+                        }.offset(x: 0, y: 20)
                         //.edgesIgnoringSafeArea(.all)  d
 
                         Spacer()
@@ -190,7 +281,7 @@ struct ContentView: View {
                         .edgesIgnoringSafeArea(.all)
                     .frame( height: 100)
                     Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
-                        .offset(x: 0, y: 8.0/*@END_MENU_TOKEN@*/)
+                        .offset(x: 0, y: 60/*@END_MENU_TOKEN@*/)
                    
                     // outputt the list
                     if (!self.loading) {
@@ -201,7 +292,7 @@ struct ContentView: View {
                                     ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
                                 }
                             }
-                        }
+                        }.offset(x: 0, y: 51)
                     }
                 }
             }.onAppear() {
