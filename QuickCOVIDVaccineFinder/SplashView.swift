@@ -13,6 +13,7 @@ struct SplashView: View {
     @State private var dim = false
     @State private var scale : CGFloat = 0.5
     @State private var showSecondImage = false
+    @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
         ZStack (alignment : .top) {
@@ -32,15 +33,25 @@ struct SplashView: View {
                     Text("We are just trying to help!").font(.subheadline)
                         .edgesIgnoringSafeArea(.all)
                         .background(Colors.SpecialBlue)
+                    HStack {
+                        Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
+                           // .offset(x: -90, y: 10)
+                        Text ("2021 Grossman Labs")
+                           // .offset(x: -90, y: 10)
+                    }.offset(x: 0, y: 200)
                 Spacer()
                 }.offset(x: 0, y: 300)
                 Spacer()
+                
             }
             .padding(.bottom, 44.0)
             .padding(.top, 44)
                     .onAppear() {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
-                        self.showSecondImage = true
+                        _ = LocationManager()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
+                            self.showSecondImage = true
+                        }
                     }
                 }
 
@@ -53,11 +64,24 @@ struct SplashView: View {
                 
                 
                     
-            Spacer()
 //                     .transition(AnyTransition.opacity.animation(.easeInOut(duration: 1.0)))
             }
-                
+            HStack {
+                Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
+                    .offset(x: -90, y: 10)
+                Text ("2021 Grossman Labs")
+                    .offset(x: -90, y: 10)
+            }
+
              Spacer()
+            HStack {
+                Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
+                    .offset(x: -90, y: 10)
+                Text ("2021 Grossman Labs")
+                    .offset(x: -90, y: 10)
+            }
+            Text ("2021 Grossman Labs")
+            Spacer()
            }
            .edgesIgnoringSafeArea(.all)
            .background(Colors.SpecialBlue)

@@ -15,7 +15,10 @@ class LocationManager: NSObject, ObservableObject {
   }
 
   @Published var location: CLLocation? {
-    willSet { objectWillChange.send() }
+    willSet {
+        print("Setting the location....")
+        
+        objectWillChange.send() }
   }
     
     
@@ -23,6 +26,7 @@ class LocationManager: NSObject, ObservableObject {
       willSet { objectWillChange.send() }
    }
 
+    
 
   override init() {
     super.init()
@@ -32,12 +36,8 @@ class LocationManager: NSObject, ObservableObject {
     self.locationManager.requestWhenInUseAuthorization()
     self.locationManager.startUpdatingLocation()
     
-    let userLatitude  = self.location?.coordinate.latitude ?? 0
-    let userLongitude = self.location?.coordinate.longitude ?? 0
-   
-       print("Got the user location")
-       print(String(userLatitude))
-       print(String(userLongitude))
+    var userLatitude  = self.location?.coordinate.latitude ?? 0
+    var userLongitude = self.location?.coordinate.longitude ?? 0
     
   }
 

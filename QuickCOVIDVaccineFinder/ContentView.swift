@@ -111,6 +111,21 @@ struct ContentView: View {
                             }
                         }
                         
+                        if (properties.0 == "appointment_vaccine_types") {
+                            for (vaccineType, vaccineFlag) in properties.1 {
+                                if (vaccineType == "jj" && vaccineFlag.boolValue) {
+                                    vaccine.vaccineTypes.append("Johnson & Johnson")
+                                }
+                                if (vaccineType == "pfizer" && vaccineFlag.boolValue) {
+                                    vaccine.vaccineTypes.append("Pfizer")
+                                }
+                                if (vaccineType == "moderna" && vaccineFlag.boolValue) {
+                                    vaccine.vaccineTypes.append("Moderna")
+                                }
+                            }
+                        }
+                        
+                        
                         if (properties.0 == "provider_brand_name") {
                             vaccine.provider_brand_name = properties.1.stringValue
                         }
@@ -159,8 +174,6 @@ struct ContentView: View {
                         VStack {
                             Text(" ")
                             Text(" ")
-//                            Text("Latitude: \(locationViewModel.userLatitude)")
-//                                    Text("Longitude: \(locationViewModel.userLongitude)")
                             Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
                                 //.font(.headline)
                             Text("Total Locations: \(self.allVaccineSites.count)")
@@ -201,12 +214,7 @@ struct ContentView: View {
                 ToolbarItem(placement: .bottomBar) {
                     ZStack {
                         
-                        HStack {
-                            Link("\u{00A9}", destination: URL(string: "https://www.grossmanlabs.com")!)
-                                .offset(x: -90, y: 10)
-                            Text ("2021 Grossman Labs")
-                                .offset(x: -90, y: 10)
-                        }
+                       
 //                    Text ("Grossman Labs 2021 ").frame(alignment: .leading)
 //                        .offset(x: -200, y: 0)
                     

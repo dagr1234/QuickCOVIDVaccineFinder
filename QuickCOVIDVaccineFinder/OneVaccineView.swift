@@ -33,11 +33,19 @@ struct OneVaccineView: View {
                         Text(vaccine.state).font(.subheadline).foregroundColor(.black)
                         Text(vaccine.zip_code).font(.subheadline).foregroundColor(.black)
                     }
+                 
+                // list of vaccines
+                    HStack() {
+                        ForEach( vaccine.vaccineTypes, id : \.self) { vaccineType  in
+                            Text(vaccineType + " ")
+                        }
+                    }
+                    
                     Text(String(format: "%.1f miles", vaccine.distanceFromUser))
             }
             Spacer()
         }
-        .frame( height: 85, alignment: .leading)
+        .frame( height: 120, alignment: .leading)
         .background(Colors.SpecialAeroBlue
                         .cornerRadius(/*@START_MENU_TOKEN@*/11.0/*@END_MENU_TOKEN@*/))
 
