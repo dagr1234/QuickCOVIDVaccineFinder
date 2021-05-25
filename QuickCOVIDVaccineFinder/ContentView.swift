@@ -9,34 +9,32 @@
 import SwiftUI
 import CoreLocation
 
-
+enum Vaccine {
+    case Pfizer
+    case Moderna
+    case JJ
+}
 
 struct ContentView: View {
     
+    let NUMBER_OF_VACCINES = 3
     @ObservedObject var locationManager = LocationManager()
     @State var allVaccineSites : [VaccineEntry] = []
-    @State var numAvailable : Int = 0
-    @State var cnt : Int = 0
-    @State var loading : Bool = false
+    @State var numAvailable    : Int = 0
+    @State var loading         : Bool = false
     @State private var isLoading = false
-    @State var showSplash : Bool = true
-   
+    @State var showSplash      : Bool = true
+    @State var vaccineSelected : [Vaccine] = [Vaccine.Pfizer, Vaccine.Moderna, Vaccine.JJ]
     
-    func incrementNumAvailable() {
-        self.numAvailable = self.numAvailable + 1
-    }
     
     func load(state : String) {
         
             self.allVaccineSites = []
-            self.numAvailable = 0
-            self.cnt = 0
             self.loading = true
+            self.numAvailable = 0
         
         
             let userLocation = locationManager.location
-            print("State \(state)")
-            
  
             guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/"+state+".json") else {
               
@@ -51,7 +49,7 @@ struct ContentView: View {
                 }
                 for features in json["features"].arrayValue {
                     var vaccine : VaccineEntry = VaccineEntry()
-//                    print(features)
+
                     for properties in features["geometry"] {
                         if (properties.0 == "type") {
                             vaccine.location_type = properties.1.stringValue
@@ -106,25 +104,38 @@ struct ContentView: View {
                         if (properties.0 == "appointments_available") {
                             vaccine.appointments_available = properties.1.boolValue
                             if (vaccine.appointments_available) {
-                                self.cnt = self.cnt + 1
-                                self.numAvailable = self.numAvailable + 1
+                                if (self.vaccineSelected.count == NUMBER_OF_VACCINES) {
+                                    self.numAvailable = self.numAvailable + 1
+                                }
                             }
                         }
-                        
+
+                        var incrementFlag = true
                         if (properties.0 == "appointment_vaccine_types") {
                             for (vaccineType, vaccineFlag) in properties.1 {
                                 if (vaccineType == "jj" && vaccineFlag.boolValue) {
                                     vaccine.vaccineTypes.append("Johnson & Johnson")
+                                    if (self.vaccineSelected.contains(Vaccine.JJ)) {
+                                        self.numAvailable = self.numAvailable + 1
+                                        incrementFlag = false
+                                    }
                                 }
                                 if (vaccineType == "pfizer" && vaccineFlag.boolValue) {
                                     vaccine.vaccineTypes.append("Pfizer")
+                                    if (self.vaccineSelected.contains(Vaccine.Pfizer) && (incrementFlag)) {
+                                        self.numAvailable = self.numAvailable + 1
+                                        incrementFlag = false
+                                    }
+                                    
                                 }
                                 if (vaccineType == "moderna" && vaccineFlag.boolValue) {
                                     vaccine.vaccineTypes.append("Moderna")
+                                    if (self.vaccineSelected.contains(Vaccine.Moderna) && (incrementFlag)) {
+                                        self.numAvailable = self.numAvailable + 1
+                                    }
                                 }
                             }
                         }
-                        
                         
                         if (properties.0 == "provider_brand_name") {
                             vaccine.provider_brand_name = properties.1.stringValue
@@ -142,10 +153,29 @@ struct ContentView: View {
         }
     
     // sort vaccine sites by distance from user
-    func getVaccineSitesSortedByDistance() -> [VaccineEntry] {
+    func getVaccineSitesSortedByDistance(filter : [Vaccine]) -> [VaccineEntry] {
+        if (filter.count == NUMBER_OF_VACCINES) {
+            return allVaccineSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+        }
         
-        return allVaccineSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
-        
+        let vaccineSites = allVaccineSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+        var finalSites : [VaccineEntry] = []
+        for site in vaccineSites {
+            if (filter.contains(Vaccine.Moderna)) && (site.vaccineTypes.contains("Moderna")) {
+                finalSites.append(site)
+            } else {
+                if (filter.contains(Vaccine.Pfizer)) && (site.vaccineTypes.contains("Pfizer")) {
+                    finalSites.append(site)
+                }
+                else {
+                    if (filter.contains(Vaccine.JJ)) && (site.vaccineTypes.contains("Johnson & Johnson")) {
+                        finalSites.append(site)
+                    }
+                }
+            }
+            
+        }
+        return finalSites
     }
     
    
@@ -180,25 +210,22 @@ struct ContentView: View {
                             Text("Number Available with Vaccine: \(self.numAvailable)")
                             Text("Click location name for more information")
                             Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
+                            Text("Select the vaccines you would like to see")
                         //    Text(" ")
                             Button(action: {
                                 let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                self.vaccineSelected.append(Vaccine.Moderna)
                                 self.load(state : userState)
                                 }) {
                                 HStack {
-                                
-                          //      Image(systemName: "arrow.clockwise")
-                                    //.font(.title)
-                                    //.mask(Circle())
-                                Text("Moderna")
-                                    .fontWeight(.semibold)
-                                    //.font(.title)
-                                    .clipShape(Rectangle())
-                                    .mask(Rectangle())
-                                   // .frame(alignment: .trailing)
+                                    Text("Moderna")
+                                        .fontWeight(.semibold)
+                                        .clipShape(Rectangle())
+                                        .mask(Rectangle())
+                                       // .frame(alignment: .trailing)
+                                        
                                     
-                                    
-                            }
+                                }
                             .frame(minWidth: 0, maxWidth: 200,alignment: .center)
                             .padding()
                             .foregroundColor(.black)
@@ -211,22 +238,16 @@ struct ContentView: View {
                        //     .offset(x: 110, y: 10)
                                 Button(action: {
                                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                    self.vaccineSelected.append(Vaccine.Pfizer)
                                     self.load(state : userState)
                                     }) {
                                 HStack {
-                                
-                          //      Image(systemName: "arrow.clockwise")
-                                    //.font(.title)
-                                    //.mask(Circle())
-                                Text("Pfizer")
-                                    .fontWeight(.semibold)
-                                    //.font(.title)
-                                    .clipShape(Rectangle())
-                                    .mask(Rectangle())
-                                //    .frame(alignment: .trailing)
+                                    Text("Pfizer")
+                                        .fontWeight(.semibold)
+                                        .clipShape(Rectangle())
+                                        .mask(Rectangle())
                                     
-                                    
-                            }
+                                }
                             .frame(minWidth: 0, maxWidth: 200,alignment: .center)
                             .padding()
                             .foregroundColor(.black)
@@ -240,6 +261,7 @@ struct ContentView: View {
                                 }
                                     Button(action: {
                                         let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                        self.vaccineSelected.append(Vaccine.JJ)
                                         self.load(state : userState)
                                         }) {
                                     HStack {
@@ -259,22 +281,15 @@ struct ContentView: View {
                                 .frame(minWidth: 0, maxWidth: 120,alignment: .center)
                                 .padding()
                                 .foregroundColor(.black)
-                                //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
                                 .background(Colors.SpecialNyanza)
                                 .cornerRadius(40)
-                           //     .padding(.horizontal, 40)
                                 .zIndex(1)
                                 .clipShape(Rectangle())
-                           //     .offset(x: 110, y: 10)
                                     }
                                 }
                             Text(" ")
-//                            HStack {
-//
-//                            }
                         }.offset(x: 0, y: 20)
-                        //.edgesIgnoringSafeArea(.all)  d
-
+                        
                         Spacer()
                         
                     }.background(Colors.SpecialBlue)
@@ -283,11 +298,13 @@ struct ContentView: View {
                     Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
                         .offset(x: 0, y: 60/*@END_MENU_TOKEN@*/)
                    
-                    // outputt the list
+                    // output the list
                     if (!self.loading) {
                         ScrollView {
                             
-                            ForEach(self.getVaccineSitesSortedByDistance(), id: \.self) { vaccine in
+                            ForEach(self.getVaccineSitesSortedByDistance(filter : vaccineSelected),
+                                    id: \.self)
+                              { vaccine in
                                 if (vaccine.appointments_available) {
                                     ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
                                 }
@@ -304,10 +321,6 @@ struct ContentView: View {
             }.toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     ZStack {
-                        
-                       
-//                    Text ("Grossman Labs 2021 ").frame(alignment: .leading)
-//                        .offset(x: -200, y: 0)
                     
                         if (!self.loading) {
                             Button(action: {

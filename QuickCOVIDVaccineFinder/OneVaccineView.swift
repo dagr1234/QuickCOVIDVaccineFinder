@@ -8,6 +8,17 @@
 import SwiftUI
 import CoreLocation
 
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+              .font(.headline)
+//            .foregroundColor(.white)
+//            .padding()
+//            .background(Color.blue)
+//            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
 struct OneVaccineView: View {
     
     var vaccine : VaccineEntry
@@ -21,7 +32,7 @@ struct OneVaccineView: View {
                     
 //                    Text(String(vaccine.counter)).frame(alignment: .topLeading)
 //                        .offset(x: -130.0, y: 0)
-                       Link(vaccine.provider_brand_name, destination: URL(string: vaccine.url)!)
+                    Link(vaccine.provider_brand_name, destination: URL(string: vaccine.url)!).modifier(Title())
                     }
                     
                     if (vaccine.address.count > 0) {
