@@ -152,6 +152,17 @@ struct ContentView: View {
             
         }
     
+    // remove a vaccine from the list of selected vaccines
+    func removeVaccine(vaccineToRemove : Vaccine) {
+        var result : [Vaccine] = []
+        for current in self.vaccineSelected {
+            if (current != vaccineToRemove) {
+                result.append(current)
+            }
+        }
+        self.vaccineSelected = result
+    }
+    
     // sort vaccine sites by distance from user
     func getVaccineSitesSortedByDistance(filter : [Vaccine]) -> [VaccineEntry] {
         if (filter.count == NUMBER_OF_VACCINES) {
@@ -169,6 +180,7 @@ struct ContentView: View {
                 }
                 else {
                     if (filter.contains(Vaccine.JJ)) && (site.vaccineTypes.contains("Johnson & Johnson")) {
+                        print("JJ")
                         finalSites.append(site)
                     }
                 }
@@ -196,103 +208,113 @@ struct ContentView: View {
             } else {
         
         GeometryReader { geometry in
-//            ScrollView  {
                 ZStack {
-                VStack {
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Text(" ")
-                            Text(" ")
-                            Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
-                                //.font(.headline)
-                            Text("Total Locations: \(self.allVaccineSites.count)")
-                            Text("Number Available with Vaccine: \(self.numAvailable)")
-                            Text("Click location name for more information")
-                            Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
-                            Text("Select the vaccines you would like to see")
-                        //    Text(" ")
-                            Button(action: {
-                                let userState = locationManager.placemark?.administrativeArea ?? "VA"
-                                self.vaccineSelected.append(Vaccine.Moderna)
-                                self.load(state : userState)
-                                }) {
-                                HStack {
-                                    Text("Moderna")
-                                        .fontWeight(.semibold)
+                    VStack {
+                        HStack {
+                            Spacer()
+                                VStack {
+                                    Text(" ")
+                                    Text(" ")
+                                    Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
+                                        //.font(.headline)
+                                    Text("Total Locations: \(self.allVaccineSites.count)")
+                                    Text("Number Available with Vaccine: \(self.numAvailable)")
+                                    Text("Click location name for more information")
+                                    Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
+                                    Text("Select the vaccines you would like to see")
+                                
+                                    Group {
+                                        HStack {
+                                            // Moderna Button
+                                            Button(action: {
+                                                let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                                
+                                                if (self.vaccineSelected.contains(Vaccine.Moderna)) {
+                                                    self.removeVaccine(vaccineToRemove : Vaccine.Moderna)
+                                                } else {
+                                                    self.vaccineSelected.append(Vaccine.Moderna)
+                                                }
+                                                self.load(state : userState)
+                                            }) {
+                                                HStack {
+                                                    Text("Moderna")
+                                                        .fontWeight(.semibold)
+                                                        .clipShape(Rectangle())
+                                                        .mask(Rectangle())
+                                                    
+                                                
+                                                }
+                                        }
+                                        .frame(minWidth: 0, maxWidth: 200,alignment: .center)
+                                        .padding()
+                                        .foregroundColor(.black)
+                                        .background(Colors.SpecialNyanza)
+                                        .cornerRadius(40)
+                                        .zIndex(1)
                                         .clipShape(Rectangle())
-                                        .mask(Rectangle())
-                                       // .frame(alignment: .trailing)
-                                        
-                                    
-                                }
-                            .frame(minWidth: 0, maxWidth: 200,alignment: .center)
-                            .padding()
-                            .foregroundColor(.black)
-                            //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
-                            .background(Colors.SpecialNyanza)
-                            .cornerRadius(40)
-                       //     .padding(.horizontal, 40)
-                            .zIndex(1)
-                            .clipShape(Rectangle())
-                       //     .offset(x: 110, y: 10)
-                                Button(action: {
-                                    let userState = locationManager.placemark?.administrativeArea ?? "VA"
-                                    self.vaccineSelected.append(Vaccine.Pfizer)
-                                    self.load(state : userState)
-                                    }) {
-                                HStack {
-                                    Text("Pfizer")
-                                        .fontWeight(.semibold)
-                                        .clipShape(Rectangle())
-                                        .mask(Rectangle())
-                                    
-                                }
-                            .frame(minWidth: 0, maxWidth: 200,alignment: .center)
-                            .padding()
-                            .foregroundColor(.black)
-                            //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
-                            .background(Colors.SpecialNyanza)
-                            .cornerRadius(40)
-                       //     .padding(.horizontal, 40)
-                            .zIndex(1)
-                            .clipShape(Rectangle())
-                       //     .offset(x: 110, y: 10)
-                                }
+                           
+                                    // Pfizer Button
                                     Button(action: {
                                         let userState = locationManager.placemark?.administrativeArea ?? "VA"
-                                        self.vaccineSelected.append(Vaccine.JJ)
+                                        
+                                        if (self.vaccineSelected.contains(Vaccine.Pfizer)) {
+                                            self.removeVaccine(vaccineToRemove : Vaccine.Pfizer)
+                                        } else {
+                                            self.vaccineSelected.append(Vaccine.Pfizer)
+                                        }
+                                    
                                         self.load(state : userState)
                                         }) {
-                                    HStack {
-                                    
-                              //      Image(systemName: "arrow.clockwise")
-                                        //.font(.title)
-                                        //.mask(Circle())
-                                    Text("J&J")
-                                        .fontWeight(.semibold)
-                                        //.font(.title)
-                                        .clipShape(Rectangle())
-                                        .mask(Rectangle())
-                                        //    .frame(alignment: .trailing)
+                                            HStack {
+                                                Text("Pfizer")
+                                                    .fontWeight(.semibold)
+                                                    .clipShape(Rectangle())
+                                                    .mask(Rectangle())
                                         
-                                        
-                                }
-                                .frame(minWidth: 0, maxWidth: 120,alignment: .center)
-                                .padding()
-                                .foregroundColor(.black)
-                                .background(Colors.SpecialNyanza)
-                                .cornerRadius(40)
-                                .zIndex(1)
-                                .clipShape(Rectangle())
+                                            }
                                     }
-                                }
+                                    .frame(minWidth: 0, maxWidth: 200,alignment: .center)
+                                    .padding()
+                                    .foregroundColor(Color.black)
+                                    .background(Colors.SpecialNyanza)
+                                    .cornerRadius(40)
+                                    .zIndex(1)
+                                    .clipShape(Rectangle())
+                                        
+                                    Button(action: {
+                                        let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                        if (self.vaccineSelected.contains(Vaccine.JJ)) {
+                                            self.removeVaccine(vaccineToRemove : Vaccine.JJ)
+                                        } else {
+                                            self.vaccineSelected.append(Vaccine.JJ)
+                                        }
+                                        self.load(state : userState)
+                                    }) {
+                                        HStack {
+                                                Text("J&J")
+                                                    .fontWeight(.semibold)
+                                                    .clipShape(Rectangle())
+                                                
+                                                }
+                                        }
+                                        .frame(minWidth: 0, maxWidth: 120,alignment: .center)
+                                        .padding()
+                                        .foregroundColor(.black)
+                                        .background(Colors.SpecialNyanza)
+                                        .cornerRadius(40)
+                                        .zIndex(1)
+                                        .clipShape(Rectangle())
+                                    } //Hstack
+                                } // Button Group
+                            } //Vstack
                             Text(" ")
-                        }.offset(x: 0, y: 20)
+                        } //HStack
+                        .offset(x: 0, y: 20)
                         
                         Spacer()
                         
-                    }.background(Colors.SpecialBlue)
+                    } //Hstack
+                    .background(Colors.SpecialBlue)
                         .edgesIgnoringSafeArea(.all)
                     .frame( height: 100)
                     Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
@@ -311,14 +333,16 @@ struct ContentView: View {
                             }
                         }.offset(x: 0, y: 51)
                     }
-                }
-            }.onAppear() {
+                } // Zstack
+            
+            .onAppear() {
                 
                 let userState = locationManager.placemark?.administrativeArea ?? "VA"
                 print("State ===> \(userState)")
                 load(state : userState)
                 
-            }.toolbar {
+            }
+            .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     ZStack {
                     
@@ -364,10 +388,11 @@ struct ContentView: View {
                 } // Toolbar Item
             } // Toolbar
         } // Geometry Reader
-      }
-    }
-  }
-}
+    } // else (not splash screen)
+  } // Zstack
+} // View Body
+} // Content View
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
