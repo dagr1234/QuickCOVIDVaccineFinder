@@ -193,8 +193,6 @@ struct ContentView: View {
    
     
     var body: some View {
-        
-        
         ZStack {
             if (self.showSplash) {
                 SplashView()
@@ -213,15 +211,8 @@ struct ContentView: View {
                         HStack {
                             Spacer()
                                 VStack {
-                                    Text(" ")
-                                    Text(" ")
-                                    Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
-                                        //.font(.headline)
-                                    Text("Total Locations: \(self.allVaccineSites.count)")
-                                    Text("Number Available with Vaccine: \(self.numAvailable)")
-                                    Text("Click location name for more information")
-                                    Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
-                                    Text("Select the vaccines you would like to see")
+                                    HeaderView(numberOfSites : self.allVaccineSites.count,
+                                               numberOfAvailableSites : self.numAvailable)
                                 
                                     Group {
                                         HStack {
