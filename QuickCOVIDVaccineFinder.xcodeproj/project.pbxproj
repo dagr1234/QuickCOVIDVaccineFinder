@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EB07A52026608C6F00EA9346 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB07A51F26608C6F00EA9346 /* HeaderView.swift */; };
+		EB08EEBB266183A200A7B6D0 /* VaccineButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB08EEBA266183A200A7B6D0 /* VaccineButtonView.swift */; };
+		EB08EEC02661889800A7B6D0 /* ResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB08EEBF2661889800A7B6D0 /* ResultList.swift */; };
 		EB96C16826325B4000419A8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB96C16726325B4000419A8D /* ContentView.swift */; };
 		EB96C16A26325B4300419A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB96C16926325B4300419A8D /* Assets.xcassets */; };
 		EB96C16D26325B4300419A8D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB96C16C26325B4300419A8D /* Preview Assets.xcassets */; };
@@ -43,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		EB07A51F26608C6F00EA9346 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		EB08EEBA266183A200A7B6D0 /* VaccineButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineButtonView.swift; sourceTree = "<group>"; };
+		EB08EEBF2661889800A7B6D0 /* ResultList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultList.swift; sourceTree = "<group>"; };
 		EB96C16226325B4000419A8D /* QuickCOVIDVaccineFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickCOVIDVaccineFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB96C16726325B4000419A8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EB96C16926325B4300419A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				EB96C16726325B4000419A8D /* ContentView.swift */,
+				EB08EEBF2661889800A7B6D0 /* ResultList.swift */,
+				EB08EEBA266183A200A7B6D0 /* VaccineButtonView.swift */,
 				EB07A51F26608C6F00EA9346 /* HeaderView.swift */,
 				EBA8D5E2263A51BA00ED0644 /* QuickCOVIDVaccineFinderApp.swift */,
 				EBA8D5DA263A502A00ED0644 /* SplashView.swift */,
@@ -296,6 +302,8 @@
 				EB96C1AB263619C100419A8D /* CircleButtonStyle.swift in Sources */,
 				EB96C1A62635F37800419A8D /* ListView.swift in Sources */,
 				EB96C1B02636274B00419A8D /* Utility.swift in Sources */,
+				EB08EEBB266183A200A7B6D0 /* VaccineButtonView.swift in Sources */,
+				EB08EEC02661889800A7B6D0 /* ResultList.swift in Sources */,
 				EB96C19E2635991D00419A8D /* OneVaccineView.swift in Sources */,
 				EB07A52026608C6F00EA9346 /* HeaderView.swift in Sources */,
 				EBA8D5DB263A502A00ED0644 /* SplashView.swift in Sources */,
