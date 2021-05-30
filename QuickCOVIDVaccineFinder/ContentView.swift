@@ -21,19 +21,18 @@ struct ContentView: View {
     var locationManager = LocationManager()
     @State var allVaccineSites : [VaccineEntry] = []
     @State var numAvailable    : Int = 0
-    @State var loading         : Bool = false
-    @State private var isLoading = false
+    @State var dataIsLoaded    : Bool = false
     @State var showSplash      : Bool = true
     @State var vaccineSelected : [Vaccine] = [Vaccine.Pfizer, Vaccine.Moderna, Vaccine.JJ]
-    @State var resultList : ResultList = ResultList()
+    @StateObject var resultList : ResultList = ResultList()
     
     // sort vaccine sites by distance from user
     func getVaccineSitesSortedByDistance(filter : [Vaccine]) -> [VaccineEntry] {
         if (filter.count == NUMBER_OF_VACCINES) {
-            return allVaccineSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+            return resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
         }
         
-        let vaccineSites = allVaccineSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+        let vaccineSites = resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
         var finalSites : [VaccineEntry] = []
         for site in vaccineSites {
             if (filter.contains(Vaccine.Moderna)) && (site.vaccineTypes.contains("Moderna")) {
@@ -80,9 +79,10 @@ struct ContentView: View {
                                         VaccineButtonView(vaccine : Vaccine.Moderna,
                                                           numberOfAvailableSites: self.$numAvailable,
                                                           vaccineSelected: self.$vaccineSelected)
-
+                                        
+                                        
                                         } //Vstack
-                                        Text(" ")
+                                         
                             }
                             .offset(x: 0, y: 20)
                             
@@ -95,11 +95,11 @@ struct ContentView: View {
                         
                         // draw large black line //
                         Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
-                            .offset(x: 0, y: 60)
+                            .offset(x: 0, y: 80)
                         
                         
                         // output the list
-                        if (!self.loading) {
+                        if (resultList.dataIsLoaded) {
                             ScrollView {
                                 ForEach(self.getVaccineSitesSortedByDistance(filter : vaccineSelected),
                                         id: \.self)
@@ -115,14 +115,16 @@ struct ContentView: View {
                 .onAppear() {
                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
                     print("State ===> \(userState)")
+                    print("Loading....")
                     self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
+                    
                     
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
                         ZStack {
                         
-                            if (!self.loading) {
+                            if (!resultList.dataIsLoaded) {
                                 Button(action: {
                                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
                                     self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
@@ -152,14 +154,15 @@ struct ContentView: View {
                                 .clipShape(Rectangle())
                                 .offset(x: 110, y: 10)
                                 }
-                            } else {
-                                HStack{
-                                    ProgressView()
-                                        .progressViewStyle(CircularProgressViewStyle(tint: .black))
-                                        .scaleEffect(1.5)
-                                }.offset(x: 110, y: 10)
-
                             }
+//                            else {
+//                                HStack{
+//                                    ProgressView()
+//                                        .progressViewStyle(CircularProgressViewStyle(tint: .black))
+//                                        .scaleEffect(1.5)
+//                                }.offset(x: 110, y: 10)
+//
+//                            }
                         } // zStack
                     } // Toolbar Item
                 } // Toolbar
