@@ -28,6 +28,7 @@ class ResultList : ObservableObject  {
     
     func load(state : String, vaccineSelected : [Vaccine]) {
 
+        self.dataIsLoaded = false
         print("Starting to load....")
         print("Vaccine Selected \(vaccineSelected)")
         var tempSites : [VaccineEntry] = []

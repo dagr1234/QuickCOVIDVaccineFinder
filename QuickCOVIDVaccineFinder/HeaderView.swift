@@ -12,12 +12,10 @@ import SwiftUI
 struct HeaderView: View {
     
     var numberOfSites          : Int
-    var numberOfAvailableSites : Int
-    
+
     var body: some View {
 
-        Text("Total Locations: \(self.numberOfSites)")
-        Text("Number Available with Vaccine: \(self.numberOfAvailableSites)")
+        Text("Vaccine Sites: \(self.numberOfSites)")
         Text("Click location name for more information")
         Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
         Text("Select the vaccines you would like to see")

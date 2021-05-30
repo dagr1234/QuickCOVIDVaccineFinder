@@ -15,7 +15,6 @@ struct VaccineButtonView: View {
     let SELECTED_COLOR     = Colors.SpecialAeroBlue
     let NOT_SELECTED_COLOR = Color.gray
     var vaccine : Vaccine
-    @Binding var numberOfAvailableSites : Int
     var locationManager : LocationManager = LocationManager()
     @Binding var vaccineSelected : [Vaccine]
 

@@ -70,10 +70,9 @@ struct ContentView: View {
                             HStack {
                                 Spacer()
                                     VStack {
-                                            Spacer()
+                                        Spacer(minLength : 5.0)
                                         // header text
-                                        HeaderView(numberOfSites : self.allVaccineSites.count,
-                                                   numberOfAvailableSites : self.numAvailable)
+                                        HeaderView(numberOfSites : resultList.sites.count)
                                             
                                         HStack {
                                             
@@ -81,20 +80,17 @@ struct ContentView: View {
                                             
                                             // Moderna Button
                                             VaccineButtonView(vaccine : Vaccine.Moderna,
-                                                              numberOfAvailableSites: self.$numAvailable,
                                                               vaccineSelected: self.$vaccineSelected)
                                                
                                             
                                     
                                             // Pfizer Button
                                             VaccineButtonView(vaccine : Vaccine.Pfizer,
-                                                              numberOfAvailableSites: self.$numAvailable,
                                                               vaccineSelected: self.$vaccineSelected)
                                             
                                             
                                             // JJ Button
                                             VaccineButtonView(vaccine : Vaccine.JJ,
-                                                              numberOfAvailableSites: self.$numAvailable,
                                                               vaccineSelected: self.$vaccineSelected)
                                             
                                             Spacer()
@@ -115,7 +111,7 @@ struct ContentView: View {
                         .edgesIgnoringSafeArea(.all)
                         .frame( height: 100)
                         .offset(x: 0, y: -360)
-                        
+//
 //                        // draw large black line //
 //                        Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
                         
