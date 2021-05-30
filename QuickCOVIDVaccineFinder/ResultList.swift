@@ -48,7 +48,7 @@ class ResultList : ObservableObject  {
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let json = try? JSON(data : data!) else {
+             guard let json = try? JSON(data : data!) else {
                 print("returning")
                 return
             }

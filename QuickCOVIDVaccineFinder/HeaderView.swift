@@ -16,10 +16,6 @@ struct HeaderView: View {
     
     var body: some View {
 
-        Text(" ")
-        Text(" ")
-        Text("Available Vaccines: ").font(.custom("Colonna MT Regular", size: 25))
-            //.font(.headline)
         Text("Total Locations: \(self.numberOfSites)")
         Text("Number Available with Vaccine: \(self.numberOfAvailableSites)")
         Text("Click location name for more information")

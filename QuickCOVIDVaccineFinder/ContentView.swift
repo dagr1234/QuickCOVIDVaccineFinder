@@ -23,7 +23,7 @@ struct ContentView: View {
     @State var numAvailable    : Int = 0
     @State var dataIsLoaded    : Bool = false
     @State var showSplash      : Bool = true
-    @State var vaccineSelected : [Vaccine] = [Vaccine.Pfizer, Vaccine.Moderna, Vaccine.JJ]
+    @State var vaccineSelected : [Vaccine] = [Vaccine.Moderna]
     @StateObject var resultList : ResultList = ResultList()
     
     // sort vaccine sites by distance from user
@@ -70,33 +70,54 @@ struct ContentView: View {
                             HStack {
                                 Spacer()
                                     VStack {
-
+                                            Spacer()
                                         // header text
                                         HeaderView(numberOfSites : self.allVaccineSites.count,
                                                    numberOfAvailableSites : self.numAvailable)
-
-                                        // buttons
-                                        VaccineButtonView(vaccine : Vaccine.Moderna,
-                                                          numberOfAvailableSites: self.$numAvailable,
-                                                          vaccineSelected: self.$vaccineSelected)
-                                        
-                                        
-                                        } //Vstack
-                                         
+                                            
+                                        HStack {
+                                            
+                                            Spacer()
+                                            
+                                            // Moderna Button
+                                            VaccineButtonView(vaccine : Vaccine.Moderna,
+                                                              numberOfAvailableSites: self.$numAvailable,
+                                                              vaccineSelected: self.$vaccineSelected)
+                                               
+                                            
+                                    
+                                            // Pfizer Button
+                                            VaccineButtonView(vaccine : Vaccine.Pfizer,
+                                                              numberOfAvailableSites: self.$numAvailable,
+                                                              vaccineSelected: self.$vaccineSelected)
+                                            
+                                            
+                                            // JJ Button
+                                            VaccineButtonView(vaccine : Vaccine.JJ,
+                                                              numberOfAvailableSites: self.$numAvailable,
+                                                              vaccineSelected: self.$vaccineSelected)
+                                            
+                                            Spacer()
+                                            
+                                            
+                                        }
+                                        Spacer()
+                                    }
+                                             
                             }
-                            .offset(x: 0, y: 20)
+//                            .offset(x: -40, y: 5)
                             
-                            Spacer()
+                            // draw large black line //
+                            Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
                             
                         } //Hstack
                         .background(Colors.SpecialBlue)
                         .edgesIgnoringSafeArea(.all)
                         .frame( height: 100)
+                        .offset(x: 0, y: -360)
                         
-                        // draw large black line //
-                        Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
-                            .offset(x: 0, y: 80)
-                        
+//                        // draw large black line //
+//                        Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
                         
                         // output the list
                         if (resultList.dataIsLoaded) {
@@ -108,7 +129,7 @@ struct ContentView: View {
                                         ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
                                     }
                                 }
-                            }.offset(x: 0, y: 51)
+                            }.offset(x: 0, y: 190)
                         }
                     } // Zstack
                 
@@ -124,7 +145,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .bottomBar) {
                         ZStack {
                         
-                            if (!resultList.dataIsLoaded) {
+                            if (resultList.dataIsLoaded) {
                                 Button(action: {
                                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
                                     self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
@@ -146,7 +167,7 @@ struct ContentView: View {
                                 .frame(minWidth: 0, maxWidth: .infinity,alignment: .trailing)
                                 .padding()
                                 .foregroundColor(.black)
-                                //.background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
+                         //       .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
                                 .background(Colors.SpecialNyanza)
                                 .cornerRadius(40)
                                 .padding(.horizontal, 40)
@@ -155,14 +176,14 @@ struct ContentView: View {
                                 .offset(x: 110, y: 10)
                                 }
                             }
-//                            else {
-//                                HStack{
-//                                    ProgressView()
-//                                        .progressViewStyle(CircularProgressViewStyle(tint: .black))
-//                                        .scaleEffect(1.5)
-//                                }.offset(x: 110, y: 10)
-//
-//                            }
+                            else {
+                                HStack{
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle(tint: .black))
+                                        .scaleEffect(1.5)
+                                }.offset(x: 110, y: 10)
+
+                            }
                         } // zStack
                     } // Toolbar Item
                 } // Toolbar

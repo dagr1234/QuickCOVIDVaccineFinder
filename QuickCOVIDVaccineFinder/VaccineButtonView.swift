@@ -12,6 +12,8 @@ import CoreLocation
 
 struct VaccineButtonView: View {
 
+    let SELECTED_COLOR     = Colors.SpecialAeroBlue
+    let NOT_SELECTED_COLOR = Color.gray
     var vaccine : Vaccine
     @Binding var numberOfAvailableSites : Int
     var locationManager : LocationManager = LocationManager()
@@ -28,6 +30,24 @@ struct VaccineButtonView: View {
         self.vaccineSelected = result
     }
 
+    func getButtonText() -> String {
+        switch vaccine {
+            case Vaccine.JJ:
+                return "JJ"
+            case Vaccine.Moderna:
+                return "Moderna"
+            case Vaccine.Pfizer:
+                return "Pfizer"
+            }
+    }
+    
+    func getButtonColor() -> Color {
+        if vaccineSelected.contains(vaccine) {
+            return SELECTED_COLOR
+        } else {
+            return NOT_SELECTED_COLOR
+        }
+    }
     
     var body: some View {
 
@@ -45,7 +65,7 @@ struct VaccineButtonView: View {
                     resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
                 }) {
                     HStack {
-                        Text("Moderna")
+                        Text(self.getButtonText())
                             .fontWeight(.semibold)
                             .clipShape(Rectangle())
                             .mask(Rectangle())
@@ -56,10 +76,16 @@ struct VaccineButtonView: View {
             .frame(minWidth: 0, maxWidth: 200,alignment: .center)
             .padding()
             .foregroundColor(.black)
-            .background(Colors.SpecialNyanza)
+//            .background(Colors.SpecialNyanza)
+            .background(self.getButtonColor())
             .cornerRadius(40)
             .zIndex(1)
             .clipShape(Rectangle())
-        }
+            //    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+            .overlay(
+                            Capsule(style: .continuous)
+                                .stroke(Color.black, style: StrokeStyle(lineWidth: 3))
+            )
+            }
     }
 }
