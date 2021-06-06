@@ -25,16 +25,32 @@ class ResultList : ObservableObject  {
         available = 0
         dataIsLoaded = false 
     }
+   
+    func filterSites(filter : [Vaccine]) -> [VaccineEntry] {
+        var finalSites : [VaccineEntry] = []
+        for site in self.sites {
+            if (filter.contains(Vaccine.Moderna)) && (site.vaccineTypes.contains("Moderna")) {
+                finalSites.append(site)
+            } else {
+                if (filter.contains(Vaccine.Pfizer)) && (site.vaccineTypes.contains("Pfizer")) {
+                    finalSites.append(site)
+                }
+                else {
+                    if (filter.contains(Vaccine.JJ)) && (site.vaccineTypes.contains("Johnson & Johnson")) {
+                        finalSites.append(site)
+                    }
+                }
+            }
+        }
+        return finalSites
+    }
+    
     
     func load(state : String, vaccineSelected : [Vaccine]) {
 
-        self.dataIsLoaded = false
         print("Starting to load....")
         print("Vaccine Selected \(vaccineSelected)")
-        var tempSites : [VaccineEntry] = []
-        self.available = 0
         
-        let userLocation = locationManager.location
 
         // check the URL String
         guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/"+state+".json") else {
@@ -54,12 +70,13 @@ class ResultList : ObservableObject  {
                 return
             }
             
-            DispatchQueue.main.async {
-                self.sites = tempSites
-                self.dataIsLoaded = true
-                print("Sites ==> \(self.sites.count)")
-            
-                print("parsing record --> \(self.available)")
+            DispatchQueue.main.sync {
+                self.sites = []
+                self.dataIsLoaded = false
+                self.available = 0
+                let userLocation = self.locationManager.location
+        
+                print("parsing has started.... --> \(self.available)")
                 for features in json["features"].arrayValue {
                     var vaccine : VaccineEntry = VaccineEntry()
 
@@ -121,6 +138,10 @@ class ResultList : ObservableObject  {
                             }
                         }
 
+                        if (properties.0 == "provider_brand_name") {
+                            vaccine.provider_brand_name = properties.1.stringValue
+                        }
+                        
                         var incrementFlag = true
                         if (properties.0 == "appointment_vaccine_types") {
                             for (vaccineType, vaccineFlag) in properties.1 {
@@ -128,6 +149,7 @@ class ResultList : ObservableObject  {
                                     vaccine.vaccineTypes.append("Johnson & Johnson")
                                     if (vaccineSelected.contains(Vaccine.JJ)) {
                                         self.available = self.available + 1
+                                        self.sites.append(vaccine)
                                         incrementFlag = false
                                     }
                                 }
@@ -135,6 +157,7 @@ class ResultList : ObservableObject  {
                                     vaccine.vaccineTypes.append("Pfizer")
                                     if (vaccineSelected.contains(Vaccine.Pfizer) && (incrementFlag)) {
                                         self.available = self.available + 1
+                                        self.sites.append(vaccine)
                                         incrementFlag = false
                                     }
                                     
@@ -143,24 +166,24 @@ class ResultList : ObservableObject  {
                                     vaccine.vaccineTypes.append("Moderna")
                                     if (vaccineSelected.contains(Vaccine.Moderna) && (incrementFlag)) {
                                         self.available = self.available + 1
+                                        self.sites.append(vaccine)
                                     }
                                 }
                             }
                         }
                         
-                        if (properties.0 == "provider_brand_name") {
-                            vaccine.provider_brand_name = properties.1.stringValue
-                        }
+                       
                     }
                     
-                    tempSites.append(vaccine)
+                   
                 }
-                print("Temp Sites -> \(tempSites.count)")
-                self.sites = tempSites
+                print("Available -> \(self.available)")
+                
                 self.dataIsLoaded = true
                 print("Total Sites ==> \(self.sites.count)")
             }
                 
         }.resume()
+        
     }
 }

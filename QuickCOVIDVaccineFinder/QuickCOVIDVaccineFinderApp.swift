@@ -8,9 +8,12 @@ import SwiftUI
 
 @main
 struct QuickCOVIDVaccineFinderApp: App {
+    
+    @StateObject var resultList : ResultList = ResultList()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(resultList)
         }
     }
 }

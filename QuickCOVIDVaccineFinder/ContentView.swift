@@ -23,34 +23,22 @@ struct ContentView: View {
     @State var numAvailable    : Int = 0
     @State var dataIsLoaded    : Bool = false
     @State var showSplash      : Bool = true
+    @State var numberOfSites   : Int  = 0
     @State var vaccineSelected : [Vaccine] = [Vaccine.Moderna]
-    @StateObject var resultList : ResultList = ResultList()
+    @EnvironmentObject var resultList: ResultList
+   
+    let screenWidth:CGFloat = UIScreen.main.bounds.width
+    let screenHeight:CGFloat = UIScreen.main.bounds.height
     
     // sort vaccine sites by distance from user
     func getVaccineSitesSortedByDistance(filter : [Vaccine]) -> [VaccineEntry] {
-        if (filter.count == NUMBER_OF_VACCINES) {
-            return resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
-        }
-        
-        let vaccineSites = resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
-        var finalSites : [VaccineEntry] = []
-        for site in vaccineSites {
-            if (filter.contains(Vaccine.Moderna)) && (site.vaccineTypes.contains("Moderna")) {
-                finalSites.append(site)
-            } else {
-                if (filter.contains(Vaccine.Pfizer)) && (site.vaccineTypes.contains("Pfizer")) {
-                    finalSites.append(site)
-                }
-                else {
-                    if (filter.contains(Vaccine.JJ)) && (site.vaccineTypes.contains("Johnson & Johnson")) {
-                        print("JJ")
-                        finalSites.append(site)
-                    }
-                }
-            }
-            
-        }
-        return finalSites
+
+//        if (filter.count == NUMBER_OF_VACCINES) {
+//            return resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+//        }
+          var filteredSites : [VaccineEntry] = []
+          filteredSites = resultList.filterSites(filter: filter)
+          return filteredSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
     }
     
     var body: some View {
@@ -70,13 +58,16 @@ struct ContentView: View {
                             HStack {
                                 Spacer()
                                     VStack {
-                                        Spacer(minLength : 5.0)
+                                        
+                                        Spacer()
                                         // header text
-                                        HeaderView(numberOfSites : resultList.sites.count)
-                                            
+                                        HeaderView(numberOfSites : self.resultList.available)
+                            
                                         HStack {
                                             
                                             Spacer()
+                                            
+                                            Text("    ")
                                             
                                             // Moderna Button
                                             VaccineButtonView(vaccine : Vaccine.Moderna,
@@ -101,7 +92,7 @@ struct ContentView: View {
                                     }
                                              
                             }
-//                            .offset(x: -40, y: 5)
+                            .offset(x: -40, y: 5)
                             
                             // draw large black line //
                             Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
@@ -111,9 +102,7 @@ struct ContentView: View {
                         .edgesIgnoringSafeArea(.all)
                         .frame( height: 100)
                         .offset(x: 0, y: -360)
-//
-//                        // draw large black line //
-//                        Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
+                    
                         
                         // output the list
                         if (resultList.dataIsLoaded) {
@@ -187,7 +176,9 @@ struct ContentView: View {
     //    } // else (not splash screen)
       } // Zstack
    } // View Body
-} // Content View
+}
+
+// Content View
 
 
 struct ContentView_Previews: PreviewProvider {

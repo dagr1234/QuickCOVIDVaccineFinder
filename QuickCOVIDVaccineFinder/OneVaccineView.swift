@@ -27,12 +27,17 @@ struct OneVaccineView: View {
             
         HStack() {
             Spacer()
-            VStack() {
-                HStack {
-                    
+                VStack() {
+           
 //                    Text(String(vaccine.counter)).frame(alignment: .topLeading)
 //                        .offset(x: -130.0, y: 0)
-                    Link(vaccine.provider_brand_name, destination: URL(string: vaccine.url)!).modifier(Title())
+                    
+                    if (vaccine.url.count > 0 && vaccine.provider_brand_name.count > 0) {
+                        Link(vaccine.provider_brand_name, destination: URL(string: vaccine.url)!).modifier(Title())
+                    } else {
+                        if (vaccine.provider_brand_name.count > 0) {
+                            Text(vaccine.provider_brand_name).font(.headline).foregroundColor(.black)
+                        }
                     }
                     
                     if (vaccine.address.count > 0) {

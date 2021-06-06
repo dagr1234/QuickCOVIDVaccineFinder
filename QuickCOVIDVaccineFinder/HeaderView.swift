@@ -15,9 +15,11 @@ struct HeaderView: View {
 
     var body: some View {
 
+        Spacer()
         Text("Vaccine Sites: \(self.numberOfSites)")
         Text("Click location name for more information")
         Link("Thanks goes to the Excellent Vaccine Spotter", destination: URL(string: "https://www.vaccinespotter.org")!)
         Text("Select the vaccines you would like to see")
+    
     }
 }

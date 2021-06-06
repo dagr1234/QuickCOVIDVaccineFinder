@@ -17,6 +17,7 @@ struct VaccineButtonView: View {
     var vaccine : Vaccine
     var locationManager : LocationManager = LocationManager()
     @Binding var vaccineSelected : [Vaccine]
+    @EnvironmentObject var resultList: ResultList
 
     // remove a vaccine from the list of selected vaccines
     func removeVaccine(vaccineToRemove : Vaccine) {
@@ -51,7 +52,9 @@ struct VaccineButtonView: View {
     var body: some View {
 
             HStack {
-                // Moderna Button
+                Spacer()
+                
+                // Generic Button
                 Button(action: {
                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
                     
@@ -60,7 +63,6 @@ struct VaccineButtonView: View {
                     } else {
                         self.vaccineSelected.append(vaccine)
                     }
-                    let resultList : ResultList = ResultList()
                     resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
                 }) {
                     HStack {
