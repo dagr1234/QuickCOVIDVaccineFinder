@@ -25,6 +25,14 @@ class ResultList : ObservableObject  {
         available = 0
         dataIsLoaded = false 
     }
+    
+    func setNotLoaded() {
+        self.dataIsLoaded = false
+    }
+   
+    func setLoaded() {
+        self.dataIsLoaded = true
+    }
    
     func filterSites(filter : [Vaccine]) -> [VaccineEntry] {
         var finalSites : [VaccineEntry] = []
@@ -48,9 +56,13 @@ class ResultList : ObservableObject  {
     
     func load(state : String, vaccineSelected : [Vaccine]) {
 
-        print("Starting to load....")
+        self.dataIsLoaded = false
+        var tempSites : [VaccineEntry] = []
+        var numSites  : Int = 0
+        print("Inside load routine....")
         print("Vaccine Selected \(vaccineSelected)")
         
+        self.dataIsLoaded = false
 
         // check the URL String
         guard let url = URL(string: "https://www.vaccinespotter.org/api/v0/states/"+state+".json") else {
@@ -65,15 +77,26 @@ class ResultList : ObservableObject  {
         request.httpMethod = "GET"
         
         URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                        print("Error on URL call... \(error)")
+                        return
+                    }
+            
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                        (200...299).contains(httpResponse.statusCode) else {
+                        print("Http response error...\(response.debugDescription)")
+                        return
+                    }
+            
              guard let json = try? JSON(data : data!) else {
                 print("returning")
                 return
             }
             
-            DispatchQueue.main.sync {
-                self.sites = []
-                self.dataIsLoaded = false
-                self.available = 0
+            
+                print("set data loaded flag to false")
                 let userLocation = self.locationManager.location
         
                 print("parsing has started.... --> \(self.available)")
@@ -131,57 +154,62 @@ class ResultList : ObservableObject  {
                         
                         if (properties.0 == "appointments_available") {
                             vaccine.appointments_available = properties.1.boolValue
-                            if (vaccine.appointments_available) {
-                                if (vaccineSelected.count == self.NUMBER_OF_VACCINES) {
-                                    self.available = self.available + 1
-                                }
-                            }
                         }
 
                         if (properties.0 == "provider_brand_name") {
                             vaccine.provider_brand_name = properties.1.stringValue
                         }
                         
-                        var incrementFlag = true
-                        if (properties.0 == "appointment_vaccine_types") {
-                            for (vaccineType, vaccineFlag) in properties.1 {
-                                if (vaccineType == "jj" && vaccineFlag.boolValue) {
-                                    vaccine.vaccineTypes.append("Johnson & Johnson")
-                                    if (vaccineSelected.contains(Vaccine.JJ)) {
-                                        self.available = self.available + 1
-                                        self.sites.append(vaccine)
-                                        incrementFlag = false
-                                    }
-                                }
-                                if (vaccineType == "pfizer" && vaccineFlag.boolValue) {
-                                    vaccine.vaccineTypes.append("Pfizer")
-                                    if (vaccineSelected.contains(Vaccine.Pfizer) && (incrementFlag)) {
-                                        self.available = self.available + 1
-                                        self.sites.append(vaccine)
-                                        incrementFlag = false
+                        if (vaccine.appointments_available) {
+                            var incrementFlag = true
+                            if (properties.0 == "appointment_vaccine_types") {
+                                for (vaccineType, vaccineFlag) in properties.1 {
+                                    if (vaccineType == "jj" && vaccineFlag.boolValue) {
+                                        vaccine.vaccineTypes.append("Johnson & Johnson")
+                                        if (vaccineSelected.contains(Vaccine.JJ)) {
+                                                numSites = numSites + 1
+                                                tempSites.append(vaccine)
+                                                incrementFlag = false
+                                            }
+                                        }
+                                    
+                                    if (vaccineType == "pfizer" && vaccineFlag.boolValue) {
+                                        vaccine.vaccineTypes.append("Pfizer")
+                                        if (vaccineSelected.contains(Vaccine.Pfizer) && (incrementFlag)) {
+                                                numSites = numSites + 1
+                                                tempSites.append(vaccine)
+                                                incrementFlag = false
+                                        }
+                                        
                                     }
                                     
-                                }
-                                if (vaccineType == "moderna" && vaccineFlag.boolValue) {
-                                    vaccine.vaccineTypes.append("Moderna")
-                                    if (vaccineSelected.contains(Vaccine.Moderna) && (incrementFlag)) {
-                                        self.available = self.available + 1
-                                        self.sites.append(vaccine)
+                                    if (vaccineType == "moderna" && vaccineFlag.boolValue) {
+                                        vaccine.vaccineTypes.append("Moderna")
+                                        if (vaccineSelected.contains(Vaccine.Moderna) && (incrementFlag)) {
+                                            numSites = numSites + 1
+                                            tempSites.append(vaccine)
+                                        }
                                     }
-                                }
-                            }
-                        }
+                                } // types
+                            } // available
+                        } // loop on properties
                         
                        
-                    }
+                    } // loop on features
                     
                    
-                }
-                print("Available -> \(self.available)")
+                } // URL Session block
                 
-                self.dataIsLoaded = true
-                print("Total Sites ==> \(self.sites.count)")
-            }
+                DispatchQueue.main.async {
+                    print("Available -> \(self.available)")
+                    print("set data loaded flag to true")
+                    self.sites = tempSites
+                    self.available = numSites
+                    self.dataIsLoaded = true
+                    print("Available -> \(self.available)")
+                    print("set data loaded flag to true")
+                    print("Total Sites ==> \(self.sites.count)")
+                }
                 
         }.resume()
         

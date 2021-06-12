@@ -21,15 +21,15 @@ struct ContentView: View {
     var locationManager = LocationManager()
     @State var allVaccineSites : [VaccineEntry] = []
     @State var numAvailable    : Int = 0
-    @State var dataIsLoaded    : Bool = false
     @State var showSplash      : Bool = true
     @State var numberOfSites   : Int  = 0
     @State var vaccineSelected : [Vaccine] = [Vaccine.Moderna]
     @EnvironmentObject var resultList: ResultList
    
-    let screenWidth:CGFloat = UIScreen.main.bounds.width
-    let screenHeight:CGFloat = UIScreen.main.bounds.height
-    
+    var offsets      : CGFloat  = 155.0
+    let screenWidth  : CGFloat  = UIScreen.main.bounds.width
+    let screenHeight : CGFloat = UIScreen.main.bounds.height
+   
     // sort vaccine sites by distance from user
     func getVaccineSitesSortedByDistance(filter : [Vaccine]) -> [VaccineEntry] {
 
@@ -42,33 +42,30 @@ struct ContentView: View {
     }
     
     var body: some View {
-//        ZStack {
-//            if (self.showSplash) {
-//                SplashView()
-//                    .onAppear {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-//                                self.showSplash = false
-//                        }
-//                    }
-//            } else {
+        ZStack {
+            if (self.showSplash) {
+                SplashView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                self.showSplash = false
+                        }
+                    }
+            } else {
         ZStack {
             GeometryReader { geometry in
-                    ZStack {
+                   // ZStack {
                         VStack {
+                           // Spacer()
                             HStack {
-                                Spacer()
+                               // Spacer()
                                     VStack {
                                         
-                                        Spacer()
+                                       // Spacer()
                                         // header text
                                         HeaderView(numberOfSites : self.resultList.available)
                             
                                         HStack {
-                                            
                                             Spacer()
-                                            
-                                            Text("    ")
-                                            
                                             // Moderna Button
                                             VaccineButtonView(vaccine : Vaccine.Moderna,
                                                               vaccineSelected: self.$vaccineSelected)
@@ -85,26 +82,22 @@ struct ContentView: View {
                                                               vaccineSelected: self.$vaccineSelected)
                                             
                                             Spacer()
-                                            
-                                            
-                                        }
-                                        Spacer()
-                                    }
+                                        }//.padding()
+                                    } //.padding()
                                              
                             }
-                            .offset(x: -40, y: 5)
+                         //   .offset(x: -40, y: 5)
                             
                             // draw large black line //
                             Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
-                            
                         } //Hstack
                         .background(Colors.SpecialBlue)
                         .edgesIgnoringSafeArea(.all)
-                        .frame( height: 100)
-                        .offset(x: 0, y: -360)
-                    
-                        
+                        .frame( height: self.offsets)
+                      //  .offset(x: 0, y: -360)
+
                         // output the list
+                        //PUT THIS BACK IN
                         if (resultList.dataIsLoaded) {
                             ScrollView {
                                 ForEach(self.getVaccineSitesSortedByDistance(filter : vaccineSelected),
@@ -114,53 +107,59 @@ struct ContentView: View {
                                         ListView(vaccine : vaccine).animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
                                     }
                                 }
-                            }.offset(x: 0, y: 190)
+                            }
+                            .offset(x: 0, y: self.offsets)
                         }
                     } // Zstack
                 
                 .onAppear() {
+                    print("Screen Width  --> \(screenWidth)")
+                    print("Screen height --> \(screenHeight)")
                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
                     print("State ===> \(userState)")
-                    print("Loading....")
+                    print("Kicking off the load....")
                     self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
                     
                     
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
-                        ZStack {
+                        //ZStack {
                         
                             if (resultList.dataIsLoaded) {
-                                Button(action: {
-                                    let userState = locationManager.placemark?.administrativeArea ?? "VA"
-                                    self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
-                            }) {
-                                HStack {
-                                    
-                                    Image(systemName: "arrow.clockwise")
-                                        //.font(.title)
-                                        //.mask(Circle())
-                                    Text("Refresh")
-                                        .fontWeight(.semibold)
-                                        //.font(.title)
-                                        .clipShape(Rectangle())
-                                        .mask(Rectangle())
-                                        .frame(alignment: .trailing)
+                                    Button(action: {
+                                        let userState = locationManager.placemark?.administrativeArea ?? "VA"
+                                        self.resultList.setNotLoaded()
+                                        self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
+                                        self.resultList.setLoaded()
+                                }) {
+                                    HStack {
+                                        Image(systemName: "arrow.clockwise")
+                                            //.font(.title)
+                                            //.mask(Circle())
+                                        Text("Refresh")
+                                            .fontWeight(.semibold)
+                                            //.font(.title)
+                                            .clipShape(Rectangle())
+                                            .mask(Rectangle())
+                                            .frame(alignment: .trailing)
+                                            
+                                      
                                         
                                         
+                                    }
+                                    .frame(minWidth: 0, maxWidth: .infinity,alignment: .trailing)
+                                    .padding()
+                                    .foregroundColor(.black)
+                             //       .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
+                                    .background(Colors.SpecialNyanza)
+                                    .cornerRadius(40)
+                                    .padding(.horizontal, 40)
+                                    .zIndex(1)
+                                    .clipShape(Rectangle())
+                                    .offset(x: 110, y: 10)
+                                    }
                                 }
-                                .frame(minWidth: 0, maxWidth: .infinity,alignment: .trailing)
-                                .padding()
-                                .foregroundColor(.black)
-                         //       .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .center, endPoint: .trailing))
-                                .background(Colors.SpecialNyanza)
-                                .cornerRadius(40)
-                                .padding(.horizontal, 40)
-                                .zIndex(1)
-                                .clipShape(Rectangle())
-                                .offset(x: 110, y: 10)
-                                }
-                            }
                             else {
                                 HStack{
                                     ProgressView()
@@ -168,13 +167,17 @@ struct ContentView: View {
                                         .scaleEffect(1.5)
                                 }.offset(x: 110, y: 10)
 
+                                
+                                
+                                
+                                
                             }
-                        } // zStack
+                 //       } // zStack
                     } // Toolbar Item
                 } // Toolbar
             } // Geometry Reader
-    //    } // else (not splash screen)
-      } // Zstack
+        } // else (not splash screen)
+       } // Zstack
    } // View Body
 }
 
