@@ -36,9 +36,9 @@ struct ContentView: View {
 //        if (filter.count == NUMBER_OF_VACCINES) {
 //            return resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
 //        }
-          var filteredSites : [VaccineEntry] = []
-          filteredSites = resultList.filterSites(filter: filter)
-          return filteredSites.sorted { $0.distanceFromUser < $1.distanceFromUser}
+         // var filteredSites : [VaccineEntry] = []
+         // filteredSites = resultList.filterSites(filter: filter)
+        return resultList.sites.sorted { $0.distanceFromUser < $1.distanceFromUser}
     }
     
     var body: some View {
@@ -62,7 +62,7 @@ struct ContentView: View {
                                         
                                        // Spacer()
                                         // header text
-                                        HeaderView(numberOfSites : self.resultList.available)
+                                        HeaderView(numberOfSites : self.resultList.sites.count)
                             
                                         HStack {
                                             Spacer()
@@ -82,11 +82,10 @@ struct ContentView: View {
                                                               vaccineSelected: self.$vaccineSelected)
                                             
                                             Spacer()
-                                        }//.padding()
-                                    } //.padding()
+                                        }
+                                    }
                                              
                             }
-                         //   .offset(x: -40, y: 5)
                             
                             // draw large black line //
                             Divider().background(Color.black).frame(height: 0).frame(height: 10).background(Color.black).padding(0)
@@ -94,10 +93,7 @@ struct ContentView: View {
                         .background(Colors.SpecialBlue)
                         .edgesIgnoringSafeArea(.all)
                         .frame( height: self.offsets)
-                      //  .offset(x: 0, y: -360)
-
-                        // output the list
-                        //PUT THIS BACK IN
+                    
                         if (resultList.dataIsLoaded) {
                             ScrollView {
                                 ForEach(self.getVaccineSitesSortedByDistance(filter : vaccineSelected),
@@ -113,6 +109,7 @@ struct ContentView: View {
                     } // Zstack
                 
                 .onAppear() {
+                    print("On appear triggered.")
                     print("Screen Width  --> \(screenWidth)")
                     print("Screen height --> \(screenHeight)")
                     let userState = locationManager.placemark?.administrativeArea ?? "VA"
@@ -129,9 +126,7 @@ struct ContentView: View {
                             if (resultList.dataIsLoaded) {
                                     Button(action: {
                                         let userState = locationManager.placemark?.administrativeArea ?? "VA"
-                                        self.resultList.setNotLoaded()
                                         self.resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
-                                        self.resultList.setLoaded()
                                 }) {
                                     HStack {
                                         Image(systemName: "arrow.clockwise")

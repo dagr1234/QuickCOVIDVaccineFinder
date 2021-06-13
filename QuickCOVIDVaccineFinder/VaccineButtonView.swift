@@ -56,14 +56,13 @@ struct VaccineButtonView: View {
                 
                 // Generic Button
                 Button(action: {
-                    let userState = locationManager.placemark?.administrativeArea ?? "VA"
                     
                     if (self.vaccineSelected.contains(vaccine)) {
                         self.removeVaccine(vaccineToRemove : vaccine)
                     } else {
                         self.vaccineSelected.append(vaccine)
                     }
-                    resultList.load(state : userState, vaccineSelected: self.vaccineSelected)
+                    resultList.filterSites(filter: vaccineSelected)
                 }) {
                     HStack {
                         Text(self.getButtonText())
